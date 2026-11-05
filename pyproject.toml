@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "ednaflow-lca"
+version = "0.1.0"
+description = "Offline standalone adaptation of eDNAFlow LCA taxonomy assignment"
+requires-python = ">=3.9"
+license = {text = "GPL-3.0-only"}
+authors = [{name = "Mahsa Mousavi-Derazmahalleh et al., upstream algorithm"}]
+[project.scripts]
+ednaflow-lca = "ednaflow_lca.cli:main"
+[tool.setuptools]
+package-dir = {"" = "src"}
+[tool.setuptools.packages.find]
+where = ["src"]

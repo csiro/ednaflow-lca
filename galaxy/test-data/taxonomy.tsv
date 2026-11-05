@@ -1,0 +1,4 @@
+taxid	domain	phylum	class	order	family	genus	species
+11	Eukaryota	Chordata	Actinopteri	Perciformes	FamA	GenusA	Species one
+12	Eukaryota	Chordata	Actinopteri	Perciformes	FamA	GenusA	Species two
+21	Eukaryota	Arthropoda	Insecta	Diptera	FamB	GenusB	Species three

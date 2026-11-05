@@ -1,0 +1,25 @@
+<tool id="ednaflow_lca" name="eDNAFlow LCA" version="0.1.0+galaxy0" profile="23.0">
+ <description>offline lowest-common-ancestor taxonomy assignment from BLAST results</description>
+ <requirements><requirement type="package" version="0.1.0">ednaflow-lca</requirement></requirements>
+ <command detect_errors="exit_code"><![CDATA[
+ednaflow-lca --feature-table '$feature_table' --blast-results '$blast_results' --taxonomy '$taxonomy'
+--query-coverage '$query_coverage' --percent-identity '$percent_identity' --identity-difference '$identity_difference'
+--assignments '$assignments' --filtered-hits '$filtered_hits' --summary '$summary'
+ ]]></command>
+ <inputs>
+  <param name="feature_table" type="data" format="tabular" label="OTU/ZOTU/ASV count table" help="First header must begin with #. Feature IDs must match BLAST query IDs."/>
+  <param name="blast_results" type="data" format="tabular" label="eDNAFlow-format BLAST results" help="At least 21 columns; qseqid column 1, staxids 3, pident 7, qcovs 21."/>
+  <param name="taxonomy" type="data" format="tabular" label="Ranked taxonomy" help="NCBI rankedlineage.dmp or tabular taxid plus domain-to-species ranks."/>
+  <param name="query_coverage" type="float" min="0" max="100" value="100" label="Minimum query coverage (%)"/>
+  <param name="percent_identity" type="float" min="0" max="100" value="97" label="Minimum percent identity"/>
+  <param name="identity_difference" type="float" min="0" value="1" label="Maximum identity difference from best hit"/>
+ </inputs>
+ <outputs>
+  <data name="assignments" format="tabular" label="${tool.name}: assignments"/>
+  <data name="filtered_hits" format="tabular" label="${tool.name}: filtered hits"/>
+  <data name="summary" format="tabular" label="${tool.name}: summary"/>
+ </outputs>
+ <tests><test expect_num_outputs="3"><param name="feature_table" value="features.tsv"/><param name="blast_results" value="blast.tsv"/><param name="taxonomy" value="taxonomy.tsv"/><output name="assignments"><assert_contents><has_text text="ZotuA"/><has_text text="dropped"/></assert_contents></output><output name="summary"><assert_contents><has_text text="assigned_features"/></assert_contents></output></test></tests>
+ <help><![CDATA[Standalone offline adaptation of the LCA component from eDNAFlow. The taxonomy snapshot is an explicit input for reproducibility; the job does not download NCBI taxonomy. Defaults match eDNAFlow: qcov 100, identity 97, difference 1.]]></help>
+ <citations><citation type="doi">10.1111/1755-0998.13356</citation></citations>
+</tool>

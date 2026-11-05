@@ -1,0 +1,20 @@
+eDNAFlow LCA standalone adaptation
+
+This package adapts the Lowest Common Ancestor taxonomy-assignment component
+from eDNAFlow by Mahsa Mousavi-Derazmahalleh and contributors:
+https://github.com/mahsa-mousavi/eDNAFlow
+
+Original publication: Mousavi-Derazmahalleh et al. (2021), eDNAFlow, an
+automated, reproducible and scalable workflow for analysis of environmental
+DNA sequences exploiting Nextflow and Singularity. Molecular Ecology Resources.
+DOI: 10.1111/1755-0998.13356
+
+Upstream files retained for provenance:
+- upstream_runAssign_collapsedTaxonomy.py
+- upstream_working_function.py
+
+Changes: removed runtime NCBI downloads; made taxonomy an explicit input;
+added a named CLI, validation, deterministic outputs, tests, Python packaging,
+and a Galaxy wrapper; removed fixed intermediate paths and shell side effects.
+
+The derivative package is GPL-3.0. No endorsement by the original authors is implied.
