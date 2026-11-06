@@ -16,6 +16,9 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
 #if $name
     --name '$name'
 #end if
+#if $source_url
+    --source-url '$source_url'
+#end if
     ]]></command>
 
     <inputs>
@@ -24,6 +27,10 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
                optional="true"
                label="Display name"
                help="Optional. By default the snapshot is named NCBI Taxonomy followed by the current date." />
+
+        <param name="source_url"
+               type="hidden"
+               value="" />
     </inputs>
 
     <outputs>
@@ -31,12 +38,34 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
               format="data_manager_json" />
     </outputs>
 
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="name" value="NCBI Taxonomy Test" />
+            <param name="source_url"
+                   value="file://$__tool_directory__/test-data/new_taxdump_test.zip" />
+            <output name="out_file">
+                <assert_contents>
+                    <has_text text="ednaflow_lca_taxonomy" />
+                    <has_text text="NCBI Taxonomy Test" />
+                    <has_text text="rankedlineage.dmp" />
+                    <has_text text="sha256" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+
     <help><![CDATA[
 Downloads the NCBI expanded taxonomy archive and installs
 ``rankedlineage.dmp`` for use by the eDNAFlow LCA Galaxy tool.
 
-Each run creates a dated taxonomy snapshot. This allows analyses to record
-which NCBI taxonomy version was used rather than downloading an unversioned
-taxonomy during each analysis.
+Each production run creates a dated taxonomy snapshot so analyses can record
+which NCBI taxonomy version was used.
+
+The hidden source parameter exists only for automated testing. Normal Data
+Manager runs use the official NCBI expanded taxonomy archive.
     ]]></help>
+
+    <citations>
+        <citation type="doi">10.1111/1755-0998.13356</citation>
+    </citations>
 </tool>
