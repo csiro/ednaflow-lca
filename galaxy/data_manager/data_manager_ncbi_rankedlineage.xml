@@ -46,7 +46,7 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
             <param name="name"
                    value="NCBI Taxonomy Test" />
             <param name="source_archive"
-                   value="new_taxdump_test.zip" />
+                   value="new_taxdump_test.zip" ftype="zip" />
             <output name="out_file">
                 <assert_contents>
                     <has_text text="ednaflow_lca_taxonomy" />
