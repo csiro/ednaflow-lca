@@ -19,7 +19,7 @@ ednaflow-lca --feature-table '$feature_table' --blast-results '$blast_results' -
   <data name="filtered_hits" format="tabular" label="${tool.name}: filtered hits"/>
   <data name="summary" format="tabular" label="${tool.name}: summary"/>
  </outputs>
- <tests><test expect_num_outputs="3"><param name="feature_table" value="features.tsv"/><param name="blast_results" value="blast.tsv"/><param name="taxonomy" value="taxonomy.tsv"/><output name="assignments"><assert_contents><has_text text="ZotuA"/><has_text text="dropped"/></assert_contents></output><output name="summary"><assert_contents><has_text text="assigned_features"/></assert_contents></output></test></tests>
+ <tests><test expect_num_outputs="3"><param name="feature_table" value="features.tsv"/><param name="blast_results" value="blast.tsv"/><param name="taxonomy" value="taxonomy.tsv"/><output name="assignments"><assert_contents><has_text text="ZotuA"/><has_text text="dropped"/></assert_contents></output><output name="filtered_hits"><assert_contents><has_text text="ZotuA"/><has_text text="percent_identity"/></assert_contents></output><output name="summary"><assert_contents><has_text text="assigned_features"/></assert_contents></output></test></tests>
  <help><![CDATA[Standalone offline adaptation of the LCA component from eDNAFlow. The taxonomy snapshot is an explicit input for reproducibility; the job does not download NCBI taxonomy. Defaults match eDNAFlow: qcov 100, identity 97, difference 1.]]></help>
  <citations><citation type="doi">10.1111/1755-0998.13356</citation></citations>
 </tool>
