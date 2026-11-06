@@ -72,4 +72,13 @@ jobs:
           python -m json.tool /tmp/ednaflow-dm/result.json
 
       - name: Execute NCBI taxonomy Data Manager test
-        run: planemo test galaxy/data_manager/data_manager_ncbi_rankedlineage.xml --no_dependency_resolution
+        run: planemo test galaxy/data_manager/data_manager_ncbi_rankedlineage.xml --no_dependency_resolution --test_output_json data_manager_test_output.json
+
+      - name: Show Data Manager test report
+        if: always()
+        run: |
+          if [ -f data_manager_test_output.json ]; then
+            cat data_manager_test_output.json
+          else
+            echo "No Planemo JSON test report was produced"
+          fi
