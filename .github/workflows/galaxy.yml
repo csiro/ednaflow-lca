@@ -31,6 +31,14 @@ jobs:
           print("Tool Data Table XML: OK")
           PY
 
+      - name: Check Data Manager configuration XML
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          ET.parse("galaxy/data_manager_conf.xml")
+          print("Data Manager configuration XML: OK")
+          PY
+
       - name: Lint NCBI taxonomy Data Manager
         run: planemo lint galaxy/data_manager/data_manager_ncbi_rankedlineage.xml
 
