@@ -16,8 +16,8 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
 #if $name
     --name '$name'
 #end if
-#if $source_url
-    --source-url '$source_url'
+#if $source_archive
+    --source-archive '$source_archive'
 #end if
     ]]></command>
 
@@ -28,9 +28,12 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
                label="Display name"
                help="Optional. By default the snapshot is named NCBI Taxonomy followed by the current date." />
 
-        <param name="source_url"
-               type="hidden"
-               value="" />
+        <param name="source_archive"
+               type="data"
+               format="zip"
+               optional="true"
+               label="Taxonomy archive"
+               help="Optional development/testing input. If omitted, the official NCBI expanded taxonomy archive is downloaded." />
     </inputs>
 
     <outputs>
@@ -40,9 +43,10 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
 
     <tests>
         <test expect_num_outputs="1">
-            <param name="name" value="NCBI Taxonomy Test" />
-            <param name="source_url"
-                   value="file://$__tool_directory__/test-data/new_taxdump_test.zip" />
+            <param name="name"
+                   value="NCBI Taxonomy Test" />
+            <param name="source_archive"
+                   value="new_taxdump_test.zip" />
             <output name="out_file">
                 <assert_contents>
                     <has_text text="ednaflow_lca_taxonomy" />
@@ -61,8 +65,9 @@ Downloads the NCBI expanded taxonomy archive and installs
 Each production run creates a dated taxonomy snapshot so analyses can record
 which NCBI taxonomy version was used.
 
-The hidden source parameter exists only for automated testing. Normal Data
-Manager runs use the official NCBI expanded taxonomy archive.
+The optional taxonomy archive input exists primarily to support deterministic
+testing. If it is omitted, the Data Manager downloads the official NCBI
+expanded taxonomy archive.
     ]]></help>
 
     <citations>

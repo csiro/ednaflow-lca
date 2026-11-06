@@ -31,7 +31,7 @@ def main():
     )
     parser.add_argument("--output", required=True)
     parser.add_argument("--name", default=None)
-    parser.add_argument("--source-url", default=None)
+    parser.add_argument("--source-archive", default=None)
     args = parser.parse_args()
 
     output = Path(args.output).resolve()
@@ -47,9 +47,12 @@ def main():
     archive = extra_files / "new_taxdump.zip"
     taxonomy = extra_files / "rankedlineage.dmp"
 
-    source_url = args.source_url or ncbi_url()
+    source_archive = args.source_archive
 
-    urllib.request.urlretrieve(source_url, archive)
+    if source_archive:
+        shutil.copyfile(source_archive, archive)
+    else:
+        urllib.request.urlretrieve(ncbi_url(), archive)
 
     with zipfile.ZipFile(archive) as zf:
         if "rankedlineage.dmp" not in zf.namelist():
