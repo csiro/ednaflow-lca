@@ -1,0 +1,8 @@
+<tables>
+    <table name="ednaflow_lca_taxonomy"
+           comment_char="#"
+           allow_duplicate_entries="False">
+        <columns>value, name, date, sha256, path</columns>
+        <file path="ednaflow_lca_taxonomy.loc" />
+    </table>
+</tables>

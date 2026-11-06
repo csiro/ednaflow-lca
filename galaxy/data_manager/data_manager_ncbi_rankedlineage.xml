@@ -1,0 +1,42 @@
+<tool id="data_manager_ednaflow_lca_taxonomy"
+      name="Download NCBI taxonomy for eDNAFlow LCA"
+      version="0.1.0"
+      tool_type="manage_data"
+      profile="23.0">
+
+    <description>install a versioned NCBI ranked-lineage taxonomy snapshot</description>
+
+    <requirements>
+        <requirement type="package" version="3.12">python</requirement>
+    </requirements>
+
+    <command detect_errors="exit_code"><![CDATA[
+python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
+    --output '$out_file'
+#if $name
+    --name '$name'
+#end if
+    ]]></command>
+
+    <inputs>
+        <param name="name"
+               type="text"
+               optional="true"
+               label="Display name"
+               help="Optional. By default the snapshot is named NCBI Taxonomy followed by the current date." />
+    </inputs>
+
+    <outputs>
+        <data name="out_file"
+              format="data_manager_json" />
+    </outputs>
+
+    <help><![CDATA[
+Downloads the NCBI expanded taxonomy archive and installs
+``rankedlineage.dmp`` for use by the eDNAFlow LCA Galaxy tool.
+
+Each run creates a dated taxonomy snapshot. This allows analyses to record
+which NCBI taxonomy version was used rather than downloading an unversioned
+taxonomy during each analysis.
+    ]]></help>
+</tool>

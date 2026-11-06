@@ -20,5 +20,19 @@ jobs:
       - name: Install Planemo
         run: python -m pip install planemo
 
-      - name: Lint Galaxy wrapper
+      - name: Check Data Manager Python syntax
+        run: python -m py_compile galaxy/data_manager/data_manager_ncbi_rankedlineage.py
+
+      - name: Check Tool Data Table XML
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          ET.parse("galaxy/data_manager/tool_data_table_conf.xml.sample")
+          print("Tool Data Table XML: OK")
+          PY
+
+      - name: Lint NCBI taxonomy Data Manager
+        run: planemo lint galaxy/data_manager/data_manager_ncbi_rankedlineage.xml
+
+      - name: Lint eDNAFlow LCA wrapper
         run: planemo lint galaxy/ednaflow_lca.xml
