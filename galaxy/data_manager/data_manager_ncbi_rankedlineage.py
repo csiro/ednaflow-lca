@@ -33,6 +33,49 @@ def combined_snapshot_digest(rankedlineage_sha256, nodes_sha256):
     return digest.hexdigest()
 
 
+def first_nonblank_line(path):
+    with open(path, "r", encoding="utf-8-sig", errors="strict") as handle:
+        for line in handle:
+            line = line.rstrip("\r\n")
+            if line.strip():
+                return line
+    raise RuntimeError(f"{path.name} contains no usable records")
+
+
+def validate_rankedlineage(path):
+    try:
+        line = first_nonblank_line(path)
+    except (UnicodeDecodeError, OSError) as error:
+        raise RuntimeError(f"rankedlineage.dmp is not valid UTF-8 taxonomy text") from error
+
+    fields = [field.strip() for field in line.split("|")]
+    if len(fields) < 10:
+        raise RuntimeError(
+            "rankedlineage.dmp first usable record does not contain the expected NCBI pipe-delimited fields"
+        )
+    if not fields[0].isdigit():
+        raise RuntimeError("rankedlineage.dmp first usable record has a nonnumeric taxid")
+
+
+def validate_nodes(path):
+    try:
+        line = first_nonblank_line(path)
+    except (UnicodeDecodeError, OSError) as error:
+        raise RuntimeError(f"nodes.dmp is not valid UTF-8 taxonomy text") from error
+
+    fields = [field.strip() for field in line.split("|")]
+    if len(fields) < 3:
+        raise RuntimeError(
+            "nodes.dmp first usable record does not contain taxid, parent taxid and rank"
+        )
+    if not fields[0].isdigit():
+        raise RuntimeError("nodes.dmp first usable record has a nonnumeric taxid")
+    if not fields[1].isdigit():
+        raise RuntimeError("nodes.dmp first usable record has a nonnumeric parent taxid")
+    if not fields[2]:
+        raise RuntimeError("nodes.dmp first usable record has a blank rank")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Install NCBI rankedlineage.dmp and nodes.dmp for eDNAFlow LCA"
@@ -80,6 +123,9 @@ def main():
     for path in (rankedlineage, nodes):
         if not path.is_file() or path.stat().st_size == 0:
             raise RuntimeError(f"Extracted {path.name} is missing or empty")
+
+    validate_rankedlineage(rankedlineage)
+    validate_nodes(nodes)
 
     rankedlineage_sha256 = sha256_file(rankedlineage)
     nodes_sha256 = sha256_file(nodes)
