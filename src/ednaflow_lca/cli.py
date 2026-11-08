@@ -179,12 +179,15 @@ def select_hits(rows, qcov_min, pident_min, diff):
 
 
 def lca(lineages):
+    # Compare every represented rank, including domain (index 0). The upstream
+    # implementation stops before domain, which can retain whichever domain
+    # occurs first when qualifying hits span divergent domains.
     if not lineages:
         return ("unassigned",) * 7
     acc = list(lineages[0])
     for lineage in lineages[1:]:
         loc = 6
-        while loc > 0:
+        while loc >= 0:
             if lineage[loc] != acc[loc] and (lineage[loc] != "" or acc[loc] != ""):
                 for c in range(6, loc - 1, -1):
                     acc[c] = "dropped"
