@@ -75,7 +75,28 @@ def read_feature_table(path: Path):
     return header[1:], data
 
 
-def read_taxonomy(path: Path):
+def read_taxonomy(path: Path, nodes_path: Path | None = None):
+    """Read ranked taxonomy, optionally using nodes.dmp for the current taxon rank.
+
+    ``rankedlineage.dmp`` stores the current taxon name plus selected ancestral
+    ranks. For a taxon that is itself a species or genus, the corresponding
+    ancestral field can be blank. When ``nodes_path`` is supplied, the current
+    node rank is used to place the current taxon name into the represented rank.
+    Taxa below species retain their ancestral species while their terminal name
+    remains available separately from the lineage in future provenance outputs.
+    """
+    current_ranks = {}
+    if nodes_path is not None:
+        with Path(nodes_path).open(encoding="utf-8-sig") as h:
+            for n, line in enumerate(h, 1):
+                line = line.rstrip("\r\n")
+                if not line:
+                    continue
+                fields = [x.strip() for x in line.split("|")]
+                if len(fields) < 3:
+                    raise ValueError(f"NCBI nodes row {n} has fewer than 3 pipe fields")
+                current_ranks[fields[0]] = fields[2]
+
     taxa = {}
     with path.open(encoding="utf-8-sig") as h:
         for n, line in enumerate(h, 1):
@@ -94,9 +115,31 @@ def read_taxonomy(path: Path):
                 if len(p) < 10:
                     raise ValueError(f"NCBI ranked-lineage row {n} has fewer than 10 pipe fields")
                 taxid = p[0]
-                species = p[1]
+                taxon_name = p[1]
+                species = p[2]
                 domain = p[9] or p[8]
-                taxa[taxid] = (domain, p[7], p[6], p[5], p[4], p[3], species)
+                lineage = [domain, p[7], p[6], p[5], p[4], p[3], species]
+
+                current_rank = current_ranks.get(taxid)
+                rank_index = {
+                    "superkingdom": 0,
+                    "domain": 0,
+                    "phylum": 1,
+                    "class": 2,
+                    "order": 3,
+                    "family": 4,
+                    "genus": 5,
+                    "species": 6,
+                }.get(current_rank)
+                if rank_index is not None:
+                    lineage[rank_index] = taxon_name
+
+                # Backward-compatible legacy mode: without nodes.dmp, retain the
+                # original eDNAFlow taxon-name-as-species interpretation.
+                if nodes_path is None:
+                    lineage[6] = taxon_name
+
+                taxa[taxid] = tuple(lineage)
     return taxa
 
 
@@ -199,7 +242,11 @@ def lca(lineages):
 
 def run(args):
     samples, table = read_feature_table(Path(args.feature_table))
-    taxonomy = read_taxonomy(Path(args.taxonomy))
+    taxonomy_nodes = getattr(args, "taxonomy_nodes", None)
+    taxonomy = read_taxonomy(
+        Path(args.taxonomy),
+        Path(taxonomy_nodes) if taxonomy_nodes else None,
+    )
     hits = read_blast(Path(args.blast_results))
     selected, unique_counts = select_hits(
         hits,
@@ -268,6 +315,7 @@ def main(argv=None):
     p.add_argument("--feature-table", required=True)
     p.add_argument("--blast-results", required=True)
     p.add_argument("--taxonomy", required=True)
+    p.add_argument("--taxonomy-nodes", default=None)
     p.add_argument("--query-coverage", type=float, default=100)
     p.add_argument("--percent-identity", type=float, default=97)
     p.add_argument("--identity-difference", type=float, default=1)
