@@ -60,7 +60,6 @@ def read_feature_table(path: Path):
             if not line:
                 continue
             rows.append(line.split("\t"))
-
     if not rows or len(rows[0]) < 2:
         raise ValueError("Feature table requires a header and at least one sample column")
     header = rows[0]
@@ -92,8 +91,6 @@ def read_taxonomy(path: Path):
                 taxa[p[0].strip()] = tuple(x.strip() for x in p[1:8])
             else:
                 p = [x.strip() for x in line.split("|")]
-                # NCBI rankedlineage: tax_id, tax_name, species, genus, family,
-                # order, class, phylum, kingdom, superkingdom
                 if len(p) < 10:
                     raise ValueError(f"NCBI ranked-lineage row {n} has fewer than 10 pipe fields")
                 taxid = p[0]
@@ -138,8 +135,8 @@ def read_blast(path: Path):
 
 
 def select_hits(rows, qcov_min, pident_min, diff):
-    # Preserve upstream filterBlast semantics exactly: first hit per feature/taxid,
-    # threshold, then iterative adjacent comparison by feature, qcov, and pident.
+    # Preserve the upstream iterative adjacent-hit algorithm, while correcting
+    # its accidental lexicographic comparison of formatted identity differences.
     unique = []
     seen = set()
     total_taxa = defaultdict(set)
@@ -163,7 +160,9 @@ def select_hits(rows, qcov_min, pident_min, diff):
             x, y = selected[c], selected[c + 1]
             if x["feature"] == y["feature"]:
                 if x["qcov"] == y["qcov"]:
-                    if format(abs(x["pident"] - y["pident"]), ".3f") > format(float(diff), ".3f"):
+                    identity_gap = round(abs(x["pident"] - y["pident"]), 3)
+                    difference_limit = round(float(diff), 3)
+                    if identity_gap > difference_limit:
                         del selected[c + 1 if x["pident"] > y["pident"] else c]
                         changed = True
                         break
@@ -180,7 +179,6 @@ def select_hits(rows, qcov_min, pident_min, diff):
 
 
 def lca(lineages):
-    # Preserve upstream pairwise collapse semantics, including blank ranks.
     if not lineages:
         return ("unassigned",) * 7
     acc = list(lineages[0])
@@ -213,11 +211,9 @@ def run(args):
         if h["taxid"] not in taxonomy:
             missing.add(h["taxid"])
             continue
-
         exclusion_text = "\t".join(taxonomy[h["taxid"]]) + "\t" + "\t".join(h["raw"])
         if any(term in exclusion_text for term in EXCLUDED):
             continue
-
         usable.append(h)
 
     grouped = defaultdict(list)
@@ -276,13 +272,11 @@ def main(argv=None):
     p.add_argument("--filtered-hits", required=True)
     p.add_argument("--summary", required=True)
     a = p.parse_args(argv)
-
     for name in ("query_coverage", "percent_identity"):
         if not 0 <= getattr(a, name) <= 100:
             p.error(name.replace("_", "-") + " must be 0..100")
     if a.identity_difference < 0:
         p.error("identity-difference must be >= 0")
-
     try:
         run(a)
     except (OSError, ValueError) as e:
