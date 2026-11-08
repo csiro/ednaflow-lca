@@ -122,8 +122,8 @@ def read_blast(path: Path):
             if not line:
                 continue
             row = line.split("\t")
-            if len(row) < 21:
-                raise ValueError(f"BLAST row {number} has {len(row)} columns; eDNAFlow requires at least 21")
+            if len(row) != 22:
+                raise ValueError(f"BLAST row {number} has {len(row)} columns; expected exactly 22")
             try:
                 pident = float(row[6])
                 qcov = float(row[20])
