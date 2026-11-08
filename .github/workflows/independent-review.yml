@@ -51,3 +51,51 @@ jobs:
           else
             echo "No console_output.txt produced"
           fi
+
+      - name: Require upstream parity for exclusion cases
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          required = {
+              "A_exclusion_via_taxonomy_name",
+              "B_eukaryote_marine_clone",
+              "C_case_of_excluded_term",
+              "X01_term_only_in_stitle",
+              "X02_term_only_in_sscinames",
+          }
+
+          failures = []
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in required and row["agree"].lower() != "yes":
+                      failures.append(
+                          (
+                              row["case"],
+                              row["feature"],
+                              row["upstream result"],
+                              row["ednaflow-lca result"],
+                          )
+                      )
+
+          if failures:
+              print("Exclusion parity failures:")
+              for case, feature, upstream, standalone in failures:
+                  print()
+                  print(f"CASE:       {case}")
+                  print(f"FEATURE:    {feature}")
+                  print(f"UPSTREAM:   {upstream}")
+                  print(f"STANDALONE: {standalone}")
+
+              sys.exit(1)
+
+          print("All required exclusion cases match upstream.")
+          PY
