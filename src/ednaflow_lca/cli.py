@@ -48,8 +48,19 @@ EXCLUDED = (
 
 
 def read_feature_table(path: Path):
-    with path.open(newline="", encoding="utf-8-sig") as h:
-        rows = list(csv.reader(h, delimiter="\t"))
+    """Read the abundance table as literal tab-separated physical lines.
+
+    Quotes have no special meaning. This matches the upstream eDNAFlow input
+    contract and prevents a leading quote from joining multiple physical rows.
+    """
+    rows = []
+    with path.open(encoding="utf-8-sig", newline="") as h:
+        for line in h:
+            line = line.rstrip("\r\n")
+            if not line:
+                continue
+            rows.append(line.split("\t"))
+
     if not rows or len(rows[0]) < 2:
         raise ValueError("Feature table requires a header and at least one sample column")
     header = rows[0]
@@ -93,11 +104,18 @@ def read_taxonomy(path: Path):
 
 
 def read_blast(path: Path):
+    """Read BLAST output as literal tab-separated physical lines.
+
+    BLAST tabular output does not use CSV quoting. Quotes therefore remain
+    ordinary field content and cannot merge adjacent physical records.
+    """
     rows = []
-    with path.open(newline="", encoding="utf-8-sig") as h:
-        for n, row in enumerate(csv.reader(h, delimiter="\t"), 1):
-            if not row:
+    with path.open(encoding="utf-8-sig", newline="") as h:
+        for n, line in enumerate(h, 1):
+            line = line.rstrip("\r\n")
+            if not line:
                 continue
+            row = line.split("\t")
             if len(row) < 21:
                 raise ValueError(f"BLAST row {n} has {len(row)} columns; eDNAFlow requires at least 21")
             try:
