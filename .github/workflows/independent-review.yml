@@ -159,3 +159,50 @@ jobs:
 
           print("Quoted BLAST rows are handled compatibly and safely.")
           PY
+
+      - name: Require numeric identity-difference semantics
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          expected = {
+              "D02_diff2_floor80_gap14": "species Homo sapiens",
+              "D09_diff9_floor80_gap14": "species Homo sapiens",
+              "D10_diff10_floor97_gap2": "class Mammalia",
+          }
+
+          observed = {}
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in expected:
+                      observed[row["case"]] = row["ednaflow-lca result"]
+
+          failures = []
+
+          for case, wanted in expected.items():
+              actual = observed.get(case)
+
+              if actual != wanted:
+                  failures.append((case, wanted, actual))
+
+          if failures:
+              print("Numeric identity-difference failures:")
+
+              for case, wanted, actual in failures:
+                  print()
+                  print(f"CASE:     {case}")
+                  print(f"EXPECTED: {wanted}")
+                  print(f"ACTUAL:   {actual}")
+
+              sys.exit(1)
+
+          print("Identity-difference filtering uses correct numeric semantics.")
+          PY
