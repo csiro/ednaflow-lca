@@ -99,3 +99,63 @@ jobs:
 
           print("All required exclusion cases match upstream.")
           PY
+
+      - name: Require safe handling of quoted BLAST rows
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          required = {
+              "I_quote_in_title",
+              "M_quote_merges_rows",
+          }
+
+          problems = []
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in required and row["agree"].lower() != "yes":
+                      problems.append(
+                          (
+                              row["case"],
+                              row["feature"],
+                              row["upstream result"],
+                              row["upstream exit"],
+                              row["ednaflow-lca result"],
+                              row["ednaflow-lca exit"],
+                              row["error messages"],
+                          )
+                      )
+
+          if problems:
+              print("Quoted-row parsing differences detected:")
+              for (
+                  case,
+                  feature,
+                  upstream,
+                  upstream_exit,
+                  standalone,
+                  standalone_exit,
+                  errors,
+              ) in problems:
+                  print()
+                  print(f"CASE:            {case}")
+                  print(f"FEATURE:         {feature}")
+                  print(f"UPSTREAM:        {upstream}")
+                  print(f"UPSTREAM EXIT:   {upstream_exit}")
+                  print(f"STANDALONE:      {standalone}")
+                  print(f"STANDALONE EXIT: {standalone_exit}")
+                  if errors:
+                      print(f"ERRORS:          {errors}")
+
+              sys.exit(1)
+
+          print("Quoted BLAST rows are handled compatibly and safely.")
+          PY
