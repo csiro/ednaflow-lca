@@ -10,18 +10,14 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Install Planemo
         run: python -m pip install planemo
-
       - name: Check Data Manager Python syntax
         run: python -m py_compile galaxy/data_manager/data_manager_ncbi_rankedlineage.py
-
       - name: Check Tool Data Table XML
         run: |
           python - <<'PY'
@@ -29,7 +25,6 @@ jobs:
           ET.parse("galaxy/tool_data_table_conf.xml.sample")
           print("Tool Data Table XML: OK")
           PY
-
       - name: Check Data Manager configuration XML
         run: |
           python - <<'PY'
@@ -37,10 +32,8 @@ jobs:
           ET.parse("galaxy/data_manager_conf.xml")
           print("Data Manager configuration XML: OK")
           PY
-
       - name: Lint NCBI taxonomy Data Manager
         run: planemo lint galaxy/data_manager/data_manager_ncbi_rankedlineage.xml
-
       - name: Lint eDNAFlow LCA wrapper
         run: planemo lint galaxy/ednaflow_lca.xml
 
@@ -49,15 +42,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Install Planemo
         run: python -m pip install planemo
-
       - name: Smoke test taxonomy Data Manager script
         run: |
           mkdir -p /tmp/ednaflow-dm/result_files
@@ -68,8 +58,8 @@ jobs:
             --source-archive galaxy/data_manager/test-data/new_taxdump_test.zip
           cat /tmp/ednaflow-dm/result.json
           test -f /tmp/ednaflow-dm/result_files/rankedlineage.dmp
+          test -f /tmp/ednaflow-dm/result_files/nodes.dmp
           python -m json.tool /tmp/ednaflow-dm/result.json
-
       - name: Execute NCBI taxonomy Data Manager test
         run: |
           set -o pipefail
@@ -78,7 +68,6 @@ jobs:
             --no_cleanup \
             --test_output_json data_manager_test_output.json \
             2>&1 | tee data_manager_planemo.log
-
       - name: Show Data Manager test report
         if: always()
         run: |
@@ -87,7 +76,6 @@ jobs:
           else
             echo "No Planemo JSON test report was produced"
           fi
-
       - name: Require persistent registered taxonomy
         if: always()
         run: |
@@ -102,12 +90,10 @@ jobs:
           for root in roots:
               if root.exists():
                   loc_files.extend(root.rglob('ednaflow_lca_taxonomy.loc'))
-
           loc_files = [p for p in loc_files if 'test-data' not in p.parts and 'tool-data' in p.parts]
           print('Candidate Galaxy Tool Data Table files:')
           for p in loc_files:
               print(f'  {p}')
-
           if not loc_files:
               print('FAIL: Galaxy created no ednaflow_lca_taxonomy.loc table.')
               sys.exit(1)
@@ -122,7 +108,6 @@ jobs:
                       print(f'FAIL: malformed row in {loc}: {line!r}')
                       sys.exit(1)
                   rows.append((loc, fields))
-
           if not rows:
               print('FAIL: taxonomy table exists but contains no registered snapshot row.')
               sys.exit(1)
@@ -136,34 +121,49 @@ jobs:
 
           loc, fields = matches[-1]
           value, name, date, registered_sha, registered_path = fields[:5]
-          installed = Path(registered_path)
-          print(f'Registered row: value={value} name={name} date={date}')
-          print(f'Registered SHA256: {registered_sha}')
-          print(f'Registered path: {installed}')
+          ranked = Path(registered_path)
+          snapshot_dir = ranked.parent
+          nodes = snapshot_dir / 'nodes.dmp'
 
-          if not installed.is_absolute():
-              print('FAIL: registered taxonomy path is not absolute.')
+          print(f'Registered row: value={value} name={name} date={date}')
+          print(f'Registered rankedlineage SHA256: {registered_sha}')
+          print(f'Registered rankedlineage path: {ranked}')
+          print(f'Expected nodes path: {nodes}')
+
+          if not ranked.is_absolute():
+              print('FAIL: registered rankedlineage path is not absolute.')
               sys.exit(1)
-          if not installed.is_file():
-              print('FAIL: registered taxonomy path does not exist as a file.')
+          if not ranked.is_file():
+              print('FAIL: registered rankedlineage path does not exist as a file.')
               sys.exit(1)
-          if installed.name != 'rankedlineage.dmp':
+          if ranked.name != 'rankedlineage.dmp':
               print('FAIL: registered file is not rankedlineage.dmp.')
               sys.exit(1)
+          if not nodes.is_file():
+              print('FAIL: nodes.dmp was not installed beside rankedlineage.dmp.')
+              sys.exit(1)
 
-          actual_sha = hashlib.sha256(installed.read_bytes()).hexdigest()
-          print(f'Installed file SHA256: {actual_sha}')
-          if actual_sha != registered_sha:
-              print('FAIL: registered SHA256 does not match installed file.')
+          ranked_sha = hashlib.sha256(ranked.read_bytes()).hexdigest()
+          nodes_sha = hashlib.sha256(nodes.read_bytes()).hexdigest()
+          print(f'Installed rankedlineage SHA256: {ranked_sha}')
+          print(f'Installed nodes SHA256: {nodes_sha}')
+          if ranked_sha != registered_sha:
+              print('FAIL: registered rankedlineage SHA256 does not match installed file.')
               sys.exit(1)
 
           fixture_zip = Path('galaxy/data_manager/test-data/new_taxdump_test.zip')
           with zipfile.ZipFile(fixture_zip) as zf:
-              fixture_bytes = zf.read('rankedlineage.dmp')
-          fixture_sha = hashlib.sha256(fixture_bytes).hexdigest()
-          print(f'Fixture rankedlineage SHA256: {fixture_sha}')
-          if actual_sha != fixture_sha:
-              print('FAIL: installed taxonomy does not match the deterministic fixture.')
+              fixture_ranked = zf.read('rankedlineage.dmp')
+              fixture_nodes = zf.read('nodes.dmp')
+          fixture_ranked_sha = hashlib.sha256(fixture_ranked).hexdigest()
+          fixture_nodes_sha = hashlib.sha256(fixture_nodes).hexdigest()
+          print(f'Fixture rankedlineage SHA256: {fixture_ranked_sha}')
+          print(f'Fixture nodes SHA256: {fixture_nodes_sha}')
+          if ranked_sha != fixture_ranked_sha:
+              print('FAIL: installed rankedlineage does not match deterministic fixture.')
+              sys.exit(1)
+          if nodes_sha != fixture_nodes_sha:
+              print('FAIL: installed nodes.dmp does not match deterministic fixture.')
               sys.exit(1)
 
           wrong_dirs = []
@@ -187,5 +187,5 @@ jobs:
                       print(f'  {term}')
                   sys.exit(1)
 
-          print('Persistent registered taxonomy verified successfully.')
+          print('Persistent rank-aware taxonomy snapshot verified successfully.')
           PY
