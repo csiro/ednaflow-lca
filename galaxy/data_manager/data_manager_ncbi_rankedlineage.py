@@ -18,6 +18,13 @@ def ncbi_url():
     return scheme + hostname + route
 
 
+def download_archive(destination, timeout=60):
+    """Download the NCBI taxonomy archive with a finite network timeout."""
+    with urllib.request.urlopen(ncbi_url(), timeout=timeout) as response:
+        with open(destination, "wb") as output:
+            shutil.copyfileobj(response, output)
+
+
 def sha256_file(path):
     digest = hashlib.sha256()
     with open(path, "rb") as handle:
@@ -46,13 +53,10 @@ def validate_rankedlineage(path):
     try:
         line = first_nonblank_line(path)
     except (UnicodeDecodeError, OSError) as error:
-        raise RuntimeError(f"rankedlineage.dmp is not valid UTF-8 taxonomy text") from error
-
+        raise RuntimeError("rankedlineage.dmp is not valid UTF-8 taxonomy text") from error
     fields = [field.strip() for field in line.split("|")]
     if len(fields) < 10:
-        raise RuntimeError(
-            "rankedlineage.dmp first usable record does not contain the expected NCBI pipe-delimited fields"
-        )
+        raise RuntimeError("rankedlineage.dmp first usable record does not contain the expected NCBI pipe-delimited fields")
     if not fields[0].isdigit():
         raise RuntimeError("rankedlineage.dmp first usable record has a nonnumeric taxid")
 
@@ -61,13 +65,10 @@ def validate_nodes(path):
     try:
         line = first_nonblank_line(path)
     except (UnicodeDecodeError, OSError) as error:
-        raise RuntimeError(f"nodes.dmp is not valid UTF-8 taxonomy text") from error
-
+        raise RuntimeError("nodes.dmp is not valid UTF-8 taxonomy text") from error
     fields = [field.strip() for field in line.split("|")]
     if len(fields) < 3:
-        raise RuntimeError(
-            "nodes.dmp first usable record does not contain taxid, parent taxid and rank"
-        )
+        raise RuntimeError("nodes.dmp first usable record does not contain taxid, parent taxid and rank")
     if not fields[0].isdigit():
         raise RuntimeError("nodes.dmp first usable record has a nonnumeric taxid")
     if not fields[1].isdigit():
@@ -99,7 +100,7 @@ def main():
     if args.source_archive:
         shutil.copyfile(args.source_archive, archive)
     else:
-        urllib.request.urlretrieve(ncbi_url(), archive)
+        download_archive(archive)
 
     required_members = ("rankedlineage.dmp", "nodes.dmp")
     try:
