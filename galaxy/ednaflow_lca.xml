@@ -104,6 +104,29 @@ ednaflow-lca
                 </assert_contents>
             </output>
         </test>
+        <test expect_num_outputs="3">
+            <param name="feature_table" value="managed_features.tsv" />
+            <param name="blast_results" value="managed_blast.tsv" />
+            <param name="taxonomy_source|source" value="managed" />
+            <param name="taxonomy_source|taxonomy_snapshot" value="ncbi-managed-test" />
+            <output name="assignments">
+                <assert_contents>
+                    <has_text text="ZotuManaged" />
+                    <has_text text="Test species" />
+                </assert_contents>
+            </output>
+            <output name="filtered_hits">
+                <assert_contents>
+                    <has_text text="ZotuManaged" />
+                    <has_text text="percent_identity" />
+                </assert_contents>
+            </output>
+            <output name="summary">
+                <assert_contents>
+                    <has_text text="assigned_features" />
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help><![CDATA[
 eDNAFlow LCA is a standalone offline adaptation of the LCA component from eDNAFlow.

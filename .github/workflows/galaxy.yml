@@ -192,3 +192,74 @@ jobs:
 
           print('Persistent rank-aware taxonomy snapshot verified successfully.')
           PY
+
+  managed-wrapper-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and Planemo
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install planemo
+      - name: Build deterministic managed taxonomy table
+        run: |
+          mkdir -p /tmp/ednaflow-managed-test/tool-data/ednaflow_lca_taxonomy/ncbi-managed-test
+          cp galaxy/data_manager/test-data/rankedlineage.dmp /tmp/ednaflow-managed-test/tool-data/ednaflow_lca_taxonomy/ncbi-managed-test/rankedlineage.dmp
+          cp galaxy/data_manager/test-data/nodes.dmp /tmp/ednaflow-managed-test/tool-data/ednaflow_lca_taxonomy/ncbi-managed-test/nodes.dmp
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          base = Path('/tmp/ednaflow-managed-test/tool-data/ednaflow_lca_taxonomy/ncbi-managed-test')
+          ranked = base / 'rankedlineage.dmp'
+          nodes = base / 'nodes.dmp'
+          ranked_sha = hashlib.sha256(ranked.read_bytes()).hexdigest()
+          nodes_sha = hashlib.sha256(nodes.read_bytes()).hexdigest()
+          loc = Path('/tmp/ednaflow-managed-test/tool-data/ednaflow_lca_taxonomy.loc')
+          loc.write_text('\t'.join(['ncbi-managed-test','NCBI Managed Test','2026-11-08',ranked_sha,nodes_sha,str(ranked),str(nodes)]) + '\n', encoding='utf-8')
+          conf = Path('/tmp/ednaflow-managed-test/tool_data_table_conf.xml')
+          conf.write_text('<tables>\n  <table name="ednaflow_lca_taxonomy" comment_char="#" allow_duplicate_entries="False">\n    <columns>value, name, date, rankedlineage_sha256, nodes_sha256, path, nodes_path</columns>\n    <file path="' + str(loc) + '" />\n  </table>\n</tables>\n', encoding='utf-8')
+          print(loc.read_text())
+          print(conf.read_text())
+          PY
+      - name: Execute managed taxonomy wrapper test
+        run: |
+          planemo test galaxy/ednaflow_lca.xml \
+            --no_dependency_resolution \
+            --tool_data_table /tmp/ednaflow-managed-test/tool_data_table_conf.xml \
+            --tool_data_path /tmp/ednaflow-managed-test/tool-data \
+            --test_output_json managed_wrapper_test_output.json
+      - name: Verify managed paths were used
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('managed_wrapper_test_output.json')
+          if not p.exists():
+              raise SystemExit('FAIL: no managed wrapper Planemo JSON report was produced')
+          report = json.loads(p.read_text())
+          matches=[]
+          for test in report.get('tests',[]):
+              data=test.get('data') or {}
+              job=data.get('job') or {}
+              cmd=job.get('command_line') or ''
+              if '/tmp/ednaflow-managed-test/' in cmd:
+                  matches.append((data,cmd))
+          if not matches:
+              raise SystemExit('FAIL: no wrapper job used the managed taxonomy entry')
+          data,cmd=matches[-1]
+          print(cmd)
+          required=['--taxonomy ','rankedlineage.dmp','--taxonomy-nodes ','nodes.dmp','/tmp/ednaflow-managed-test/']
+          missing=[x for x in required if x not in cmd]
+          if missing:
+              raise SystemExit('FAIL: managed wrapper command missing: '+', '.join(missing))
+          if data.get('status') != 'success':
+              raise SystemExit('FAIL: managed wrapper test did not succeed')
+          print('Managed taxonomy wrapper execution verified successfully.')
+          PY
