@@ -41,8 +41,8 @@ def read_feature_table(path: Path):
     if not rows or len(rows[0]) < 2:
         raise ValueError("Feature table requires a header and at least one sample column")
     header = rows[0]
-    if not header[0].startswith("#"):
-        raise ValueError("Feature-table first header must begin with '#', as required by eDNAFlow")
+    if not header[0].strip():
+        raise ValueError("Feature-table first header must not be blank")
     data = {}
     for number, row in enumerate(rows[1:], 2):
         if len(row) != len(header):
