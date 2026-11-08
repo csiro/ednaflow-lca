@@ -24,9 +24,10 @@ Result at the documented/default eDNAFlow settings:
 During the original parity work, the standalone code was corrected to preserve
 three subtle upstream behaviours exercised by this fixture: iterative
 adjacent-hit filtering, blank-rank handling in lineage collapse, and use of the
-ranked-lineage taxon-name field as the species output. Output column labels
-differ deliberately (`feature_id` and snake_case explanatory names), but the
-reference-fixture data rows are identical at the default settings.
+ranked-lineage taxon-name field as the species output. Those statements describe
+the original parity milestone; subsequent independently reviewed corrections are
+documented below. Output column labels differ deliberately, but the reference-
+fixture assignment data rows remain identical at the default settings.
 
 Three source taxid strings are absent from the reference taxonomy fixture:
 `1915147`, `591391;1915147`, and `N/A`. The original implementation likewise
@@ -35,94 +36,104 @@ cannot assign lineage rows for those exact strings.
 ## Independent differential review and remediation
 
 Subsequent differential testing against the vendored upstream eDNAFlow scripts
-identified behaviours not covered by the 76-assignment reference fixture.
-These tests are retained as regression evidence rather than treating the
-reference fixture as a complete behavioural specification.
+identified behaviours not covered by the 76-assignment reference fixture. The
+reference fixture is retained as a default-setting regression, not as a complete
+behavioural specification.
 
 ### Exclusion semantics
 
 The first standalone implementation searched excluded phrases only in the
 BLAST common-name field and normalised case. Upstream performs case-sensitive
-searching against the taxonomy-enriched BLAST evidence. This changed real
-assignments in targeted differential cases. The standalone implementation was
-corrected to match upstream exclusion semantics. Regression gates now verify
-exclusion terms occurring in taxonomy names, subject titles and scientific-name
-fields, as well as phrase and case behaviour.
+searching against the taxonomy-enriched BLAST evidence. The standalone
+implementation was corrected to match upstream exclusion semantics. Regression
+gates cover taxonomy names, subject titles, scientific-name fields, phrase and
+case behaviour.
 
 ### Literal TSV parsing
 
 The first standalone implementation used Python CSV parsing with a tab
 delimiter. CSV quote semantics can join multiple physical BLAST records when a
-field starts with a double quote. eDNAFlow BLAST input is a literal tabular
-format rather than quoted CSV. BLAST and abundance-table inputs are therefore
-now read as physical lines split on literal tab characters, while retaining
-row-width and numeric validation. Differential quote cases now pass without
-silent row merging.
+field starts with a double quote. BLAST and abundance-table inputs are now read
+as physical lines split on literal tabs, while retaining row-width and numeric
+validation.
 
 ### Intentional numerical correction to upstream behaviour
 
-The upstream filtering algorithm formats the percentage-identity gap and the
-`identity_difference` threshold to three decimal places and compares the
-resulting strings. Lexicographic string comparison is not equivalent to numeric
-comparison for all non-default thresholds.
-
-`ednaflow-lca` intentionally corrects this behaviour while preserving the
-upstream iterative adjacent-hit/filtering structure. Both values are rounded to
-three decimal places and then compared numerically.
-
-This correction does not change the documented/default eDNAFlow configuration:
-- qcov = 100;
-- pident = 97;
-- identity difference = 1.
-
-Independent comparison found zero text-versus-numeric disagreements at an
-identity-difference threshold of 1 across the tested parameter grid, zero
+Legacy eDNAFlow compares three-decimal formatted identity gaps and thresholds as
+strings. `ednaflow-lca` keeps the upstream iterative neighbour-filter structure
+and three-decimal precision, but compares the values numerically. The documented
+defaults (qcov 100, pident 97, identity difference 1) are unchanged. Independent
+testing found zero text-versus-numeric disagreements at difference 1 and zero
 such disagreements across 1,467 same-feature neighbouring pairs in the full
-reference BLAST fixture, and the 76-assignment default parity regression
-continues to pass.
+reference BLAST fixture; the 76-assignment default parity regression remains
+green.
 
-Targeted non-default regression cases demonstrate the corrected behaviour:
-- pident floor 80, gap 14, difference 2: the lower hit is removed numerically;
-- pident floor 80, gap 14, difference 9: the lower hit is removed numerically;
-- pident floor 97, gap 2, difference 10: both hits are retained numerically.
-
-These cases intentionally differ from legacy eDNAFlow where its string
-comparison produces a numerically incorrect result.
+Targeted non-default regressions cover difference 2 and 9 with a 14-point gap
+and difference 10 with a 2-point gap.
 
 ### Intentional cross-domain LCA correction
 
-Legacy eDNAFlow compares lineage ranks from species upward but stops before the
-domain rank. If equally qualifying hits span different domains, such as
-Bacteria and Eukaryota, the legacy result can retain the domain of whichever hit
-appears first while marking lower ranks as `dropped`.
+Legacy eDNAFlow stops lineage comparison before domain, so qualifying hits from
+different domains can retain whichever domain appears first. `ednaflow-lca`
+compares domain as well: conflicting domain evidence yields `dropped` at domain
+and every lower represented rank. Qualifying hits remain in filtered-hit
+provenance. `tests/test_cross_domain.py` covers this correction; the reference
+fixture remains unchanged.
 
-`ednaflow-lca` intentionally compares domain as the highest represented rank.
-When qualifying evidence conflicts at domain, domain and all lower ranks are
-returned as `dropped`. The feature is not deleted: its qualifying hit evidence
-remains available in the filtered-hit output and its input abundance remains
-part of the source data. This avoids asserting a domain unsupported by the
-combined evidence.
+### Rank-aware species and infraspecific handling
 
-The behaviour is covered by `tests/test_cross_domain.py`. The full 76-assignment
-reference fixture continues to pass unchanged because that fixture does not
-exercise a qualifying cross-domain conflict.
+NCBI `rankedlineage.dmp` contains the current `taxon_name` and selected ancestral
+ranks. For a current species or genus node, its corresponding ancestral rank
+field can be blank; for an infraspecific node, the species field contains the
+ancestral species. Managed NCBI snapshots therefore pair `rankedlineage.dmp`
+with `nodes.dmp`, which supplies the current node rank.
 
-## Galaxy taxonomy persistence validation
+When `nodes.dmp` is available, `ednaflow-lca` places a current species or genus
+name at its actual represented rank and retains the ancestral species for taxa
+below species. Examples covered by tests include:
+- genus-node `Escherichia` -> genus `Escherichia`, species blank;
+- `Escherichia` plus `Escherichia coli` -> genus `Escherichia`, species dropped;
+- `Canis lupus familiaris` plus `Canis lupus` -> species `Canis lupus`.
 
-The NCBI taxonomy Data Manager is additionally tested as an installed Galaxy
-reference, not merely as a successful tool job. CI verifies that Galaxy creates
-`ednaflow_lca_taxonomy.loc`, that the registered taxonomy path is absolute and
-exists, and that the registered SHA-256 equals both the installed
-`rankedlineage.dmp` checksum and the deterministic taxonomy fixture checksum.
-Snapshot identifiers combine installation date and a checksum prefix.
+The assignment table remains the seven-rank LCA. The filtered-hit provenance
+output separately preserves each contributing hit's exact terminal NCBI
+`taxon_name` and `taxon_rank`, plus its resolved seven-rank lineage. Thus taxid
+9615 can retain `Canis lupus familiaris` / `subspecies` while its species lineage
+is `Canis lupus`. This avoids forcing multiple terminal names into one LCA row.
+
+A custom taxonomy may omit `nodes.dmp`; that path deliberately retains the
+legacy/simple taxonomy interpretation. Managed NCBI snapshots always provide
+both files to the CLI.
+
+## Galaxy taxonomy persistence and managed execution validation
+
+The NCBI Data Manager is tested as an installed Galaxy reference, not merely as
+a successful tool job. Each managed snapshot contains both `rankedlineage.dmp`
+and `nodes.dmp`, with independent SHA-256 values recorded in the Tool Data Table.
+The snapshot identifier combines installation date with a digest derived from
+both files.
+
+CI verifies that:
+- Galaxy creates `ednaflow_lca_taxonomy.loc`;
+- both registered paths are absolute and physically exist;
+- registered, installed and deterministic-fixture SHA-256 values agree for both
+  `rankedlineage.dmp` and `nodes.dmp`;
+- the Galaxy wrapper can select a managed table entry; and
+- the rendered LCA job command receives both `--taxonomy` and
+  `--taxonomy-nodes` managed paths.
+
+The Galaxy wrapper also retains a custom-taxonomy route, with optional
+`nodes.dmp` for rank-aware custom NCBI analysis.
 
 ## Compatibility statement
 
-The project aims to preserve eDNAFlow LCA behaviour where that behaviour is
-scientifically defensible and to document intentional corrections when legacy
-behaviour is unsafe or numerically incorrect. The 76/76 reference comparison
-therefore demonstrates parity at the documented/default configuration; it is
-not a claim of bug-for-bug equivalence for every non-default parameter or edge
-case. Intentional departures currently include numeric identity-difference
-comparison and refusing to retain a specific domain when qualifying evidence
-conflicts across domains.
+The project preserves eDNAFlow LCA behaviour where scientifically defensible and
+documents intentional corrections where legacy behaviour is unsafe,
+numerically incorrect, or taxonomically misleading. The 76/76 comparison is a
+parity statement for the documented/default reference fixture, not a claim of
+bug-for-bug equivalence for every non-default parameter or edge case.
+
+Intentional departures currently include numeric identity-difference comparison,
+refusing to retain an arbitrary domain for cross-domain evidence, and rank-aware
+placement of current NCBI genus/species names when `nodes.dmp` is available.
+Terminal NCBI names and ranks are preserved separately as provenance.

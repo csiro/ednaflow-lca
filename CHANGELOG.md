@@ -24,12 +24,22 @@
   well; conflicting domains yield `dropped` at domain and every lower rank.
   Qualifying hit evidence is retained in the filtered-hit output. The 76-row
   default reference parity fixture is unchanged by this correction.
-- Corrected Galaxy Data Manager persistence and registration. The Data Manager
-  writes rankedlineage.dmp to Galaxy's actual output extra-files path, moves it
-  into persistent managed reference storage, registers an absolute Tool Data
-  Table path, and records the installed SHA-256. Snapshot IDs include the date
-  and a checksum prefix to avoid collisions between different same-day
-  taxonomy contents.
-- Added end-to-end Galaxy CI assertions that verify the registered taxonomy
-  file exists at the stored path and that registered, installed, and fixture
-  SHA-256 values agree.
+- Added rank-aware NCBI taxonomy handling. Managed snapshots now install and
+  checksum both `rankedlineage.dmp` and `nodes.dmp`. The current NCBI node rank
+  is used to place terminal species and genus names at their actual represented
+  ranks, while infraspecific taxa retain the ancestral species rank.
+- Expanded filtered-hit provenance to preserve the exact terminal NCBI
+  `taxon_name` and `taxon_rank` alongside the seven-rank lineage used for LCA.
+  For example, taxid 9615 retains `Canis lupus familiaris` / `subspecies` while
+  its LCA species lineage is `Canis lupus`.
+- Added managed/custom taxonomy selection to the Galaxy wrapper. Managed NCBI
+  references pass both `rankedlineage.dmp` and `nodes.dmp` to the CLI; custom
+  analyses can optionally provide `nodes.dmp` or retain legacy/simple taxonomy
+  behaviour when it is omitted.
+- Corrected Galaxy Data Manager persistence and registration. Managed files are
+  written through Galaxy's real output extra-files path, moved into persistent
+  Tool Data storage, and registered with absolute paths. Snapshot identifiers
+  combine installation date with a digest derived from both managed files.
+- Added end-to-end Galaxy CI assertions that verify persistent paths and
+  independent checksums for `rankedlineage.dmp` and `nodes.dmp`, plus a managed
+  wrapper execution test proving both registered paths are passed to the LCA job.
