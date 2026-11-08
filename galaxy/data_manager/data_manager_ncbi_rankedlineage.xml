@@ -3,16 +3,14 @@
       version="0.1.0"
       tool_type="manage_data"
       profile="23.0">
-
     <description>install a versioned NCBI ranked-lineage taxonomy snapshot</description>
-
     <requirements>
         <requirement type="package" version="3.12">python</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
 python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
     --output '$out_file'
+    --extra-files-path '$out_file.extra_files_path'
 #if $name
     --name '$name'
 #end if
@@ -20,14 +18,12 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
     --source-archive '$source_archive'
 #end if
     ]]></command>
-
     <inputs>
         <param name="name"
                type="text"
                optional="true"
                label="Display name"
-               help="Optional. By default the snapshot is named NCBI Taxonomy followed by the current date." />
-
+               help="Optional. By default the snapshot is named from its installation date and taxonomy checksum." />
         <param name="source_archive"
                type="data"
                format="zip"
@@ -35,18 +31,13 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
                label="Taxonomy archive"
                help="Optional development/testing input. If omitted, the official NCBI expanded taxonomy archive is downloaded." />
     </inputs>
-
     <outputs>
-        <data name="out_file"
-              format="data_manager_json" />
+        <data name="out_file" format="data_manager_json" />
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
-            <param name="name"
-                   value="NCBI Taxonomy Test" />
-            <param name="source_archive"
-                   value="new_taxdump_test.zip" ftype="zip" />
+            <param name="name" value="NCBI Taxonomy Test" />
+            <param name="source_archive" value="new_taxdump_test.zip" ftype="zip" />
             <output name="out_file">
                 <assert_contents>
                     <has_text text="ednaflow_lca_taxonomy" />
@@ -57,19 +48,18 @@ python '$__tool_directory__/data_manager_ncbi_rankedlineage.py'
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 Downloads the NCBI expanded taxonomy archive and installs
 ``rankedlineage.dmp`` for use by the eDNAFlow LCA Galaxy tool.
 
-Each production run creates a dated taxonomy snapshot so analyses can record
-which NCBI taxonomy version was used.
+The installed snapshot ID combines the installation date and the first eight
+hexadecimal characters of the extracted taxonomy SHA-256. Identical content
+installed on the same day therefore has the same identifier; different content
+receives a different identifier.
 
 The optional taxonomy archive input exists primarily to support deterministic
-testing. If it is omitted, the Data Manager downloads the official NCBI
-expanded taxonomy archive.
+testing. If omitted, the official NCBI expanded taxonomy archive is downloaded.
     ]]></help>
-
     <citations>
         <citation type="doi">10.1111/1755-0998.13356</citation>
     </citations>

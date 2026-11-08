@@ -8,18 +8,13 @@
                 <column name="name" />
                 <column name="date" />
                 <column name="sha256" />
-                <column name="path"
-                        output_ref="out_file">
+                <column name="path" output_ref="out_file">
                     <move type="file">
                         <source>${path}</source>
-                        <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">
-                            ednaflow_lca_taxonomy/${value}/rankedlineage.dmp
-                        </target>
+                        <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">ednaflow_lca_taxonomy/${value}/rankedlineage.dmp</target>
                     </move>
-                    <value_translation>
-                        <value_translation_type>function</value_translation_type>
-                        <function>abspath</function>
-                    </value_translation>
+                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/ednaflow_lca_taxonomy/${value}/rankedlineage.dmp</value_translation>
+                    <value_translation type="function">abspath</value_translation>
                 </column>
             </output>
         </data_table>

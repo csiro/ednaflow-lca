@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Install a versioned NCBI rankedlineage.dmp snapshot for eDNAFlow LCA."""
 
 import argparse
 import hashlib
@@ -30,6 +31,7 @@ def main():
         description="Install an NCBI rankedlineage.dmp snapshot for eDNAFlow LCA"
     )
     parser.add_argument("--output", required=True)
+    parser.add_argument("--extra-files-path", required=True)
     parser.add_argument("--name", default=None)
     parser.add_argument("--source-archive", default=None)
     args = parser.parse_args()
@@ -37,34 +39,39 @@ def main():
     output = Path(args.output).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
 
-    snapshot_date = date.today().isoformat()
-    value = f"ncbi-{snapshot_date}"
-    display_name = args.name or f"NCBI Taxonomy {snapshot_date}"
-
-    extra_files = Path(str(output) + "_files")
+    # Galaxy supplies the real output dataset extra-files directory. Data Manager
+    # move sources are resolved relative to this directory.
+    extra_files = Path(args.extra_files_path).resolve()
     extra_files.mkdir(parents=True, exist_ok=True)
 
     archive = extra_files / "new_taxdump.zip"
     taxonomy = extra_files / "rankedlineage.dmp"
 
-    source_archive = args.source_archive
-
-    if source_archive:
-        shutil.copyfile(source_archive, archive)
+    if args.source_archive:
+        shutil.copyfile(args.source_archive, archive)
     else:
         urllib.request.urlretrieve(ncbi_url(), archive)
 
-    with zipfile.ZipFile(archive) as zf:
-        if "rankedlineage.dmp" not in zf.namelist():
-            raise RuntimeError(
-                "rankedlineage.dmp was not found in the NCBI taxonomy archive"
-            )
-        with zf.open("rankedlineage.dmp") as source:
-            with open(taxonomy, "wb") as target:
+    try:
+        with zipfile.ZipFile(archive) as zf:
+            if "rankedlineage.dmp" not in zf.namelist():
+                raise RuntimeError(
+                    "rankedlineage.dmp was not found in the NCBI taxonomy archive"
+                )
+            with zf.open("rankedlineage.dmp") as source, open(taxonomy, "wb") as target:
                 shutil.copyfileobj(source, target)
+    finally:
+        if archive.exists():
+            archive.unlink()
+
+    if not taxonomy.is_file() or taxonomy.stat().st_size == 0:
+        raise RuntimeError("Extracted rankedlineage.dmp is missing or empty")
 
     checksum = sha256_file(taxonomy)
-    archive.unlink()
+    snapshot_date = date.today().isoformat()
+    checksum_prefix = checksum[:8]
+    value = f"ncbi-{snapshot_date}-{checksum_prefix}"
+    display_name = args.name or f"NCBI Taxonomy {snapshot_date} ({checksum_prefix})"
 
     data_manager_entry = {
         "data_tables": {
@@ -84,6 +91,7 @@ def main():
         json.dump(data_manager_entry, handle, indent=2)
 
     print(f"Installed {display_name}")
+    print(f"Snapshot ID: {value}")
     print(f"SHA256: {checksum}")
 
 
