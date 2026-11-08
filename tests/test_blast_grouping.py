@@ -1,5 +1,3 @@
-import pytest
-
 from ednaflow_lca.cli import read_blast
 
 
@@ -42,7 +40,7 @@ def test_contiguous_feature_blocks_are_accepted(tmp_path):
     ]
 
 
-def test_non_contiguous_feature_blocks_are_rejected(tmp_path):
+def test_interleaved_feature_blocks_are_accepted_and_order_preserved(tmp_path):
     blast = tmp_path / "blast.tsv"
 
     blast.write_text(
@@ -52,8 +50,21 @@ def test_non_contiguous_feature_blocks_are_rejected(tmp_path):
         encoding="utf-8",
     )
 
-    with pytest.raises(
-        ValueError,
-        match=r"BLAST feature OTU_A occurs in non-contiguous blocks",
-    ):
-        read_blast(blast)
+    rows = read_blast(blast)
+
+    assert [
+        (row["feature"], row["subject"])
+        for row in rows
+    ] == [
+        ("OTU_A", "a1"),
+        ("OTU_B", "b1"),
+        ("OTU_A", "a2"),
+    ]
+
+    otu_a = [
+        row["subject"]
+        for row in rows
+        if row["feature"] == "OTU_A"
+    ]
+
+    assert otu_a == ["a1", "a2"]
