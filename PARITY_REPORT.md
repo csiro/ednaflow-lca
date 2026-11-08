@@ -89,6 +89,24 @@ Targeted non-default regression cases demonstrate the corrected behaviour:
 These cases intentionally differ from legacy eDNAFlow where its string
 comparison produces a numerically incorrect result.
 
+### Intentional cross-domain LCA correction
+
+Legacy eDNAFlow compares lineage ranks from species upward but stops before the
+domain rank. If equally qualifying hits span different domains, such as
+Bacteria and Eukaryota, the legacy result can retain the domain of whichever hit
+appears first while marking lower ranks as `dropped`.
+
+`ednaflow-lca` intentionally compares domain as the highest represented rank.
+When qualifying evidence conflicts at domain, domain and all lower ranks are
+returned as `dropped`. The feature is not deleted: its qualifying hit evidence
+remains available in the filtered-hit output and its input abundance remains
+part of the source data. This avoids asserting a domain unsupported by the
+combined evidence.
+
+The behaviour is covered by `tests/test_cross_domain.py`. The full 76-assignment
+reference fixture continues to pass unchanged because that fixture does not
+exercise a qualifying cross-domain conflict.
+
 ## Galaxy taxonomy persistence validation
 
 The NCBI taxonomy Data Manager is additionally tested as an installed Galaxy
@@ -104,5 +122,7 @@ The project aims to preserve eDNAFlow LCA behaviour where that behaviour is
 scientifically defensible and to document intentional corrections when legacy
 behaviour is unsafe or numerically incorrect. The 76/76 reference comparison
 therefore demonstrates parity at the documented/default configuration; it is
-not a claim of bug-for-bug equivalence for every non-default parameter or
-malformed input.
+not a claim of bug-for-bug equivalence for every non-default parameter or edge
+case. Intentional departures currently include numeric identity-difference
+comparison and refusing to retain a specific domain when qualifying evidence
+conflicts across domains.

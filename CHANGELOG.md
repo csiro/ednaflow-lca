@@ -1,7 +1,5 @@
 # Changelog
-
 ## 0.1.0 - release candidate
-
 - Initial standalone offline adaptation of eDNAFlow LCA.
 - Added explicit taxonomy input, CLI validation, deterministic outputs, tests,
   Galaxy wrapper and Bioconda recipe scaffold.
@@ -20,6 +18,12 @@
   compares the rounded values numerically. The eDNAFlow defaults (qcov 100,
   pident 97, identity difference 1) and the 76-row upstream parity fixture are
   unchanged by this correction.
+- Corrected cross-domain LCA handling. Legacy eDNAFlow stops lineage comparison
+  before the domain rank, so equally qualifying hits from different domains can
+  retain whichever domain appears first. ednaflow-lca now compares domain as
+  well; conflicting domains yield `dropped` at domain and every lower rank.
+  Qualifying hit evidence is retained in the filtered-hit output. The 76-row
+  default reference parity fixture is unchanged by this correction.
 - Corrected Galaxy Data Manager persistence and registration. The Data Manager
   writes rankedlineage.dmp to Galaxy's actual output extra-files path, moves it
   into persistent managed reference storage, registers an absolute Tool Data
