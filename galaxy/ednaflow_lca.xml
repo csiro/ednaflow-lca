@@ -48,6 +48,8 @@ ednaflow-lca
                     <options from_data_table="ednaflow_lca_taxonomy">
                         <column name="name" index="1" />
                         <column name="value" index="0" />
+                        <column name="path" index="5" />
+                        <column name="nodes_path" index="6" />
                     </options>
                 </param>
             </when>
