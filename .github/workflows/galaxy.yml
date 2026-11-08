@@ -104,7 +104,7 @@ jobs:
                   if not line or line.startswith('#'):
                       continue
                   fields = line.split('\t')
-                  if len(fields) < 5:
+                  if len(fields) < 7:
                       print(f'FAIL: malformed row in {loc}: {line!r}')
                       sys.exit(1)
                   rows.append((loc, fields))
@@ -120,15 +120,15 @@ jobs:
               sys.exit(1)
 
           loc, fields = matches[-1]
-          value, name, date, registered_sha, registered_path = fields[:5]
+          value, name, date, registered_ranked_sha, registered_nodes_sha, registered_path, registered_nodes_path = fields[:7]
           ranked = Path(registered_path)
-          snapshot_dir = ranked.parent
-          nodes = snapshot_dir / 'nodes.dmp'
+          nodes = Path(registered_nodes_path)
 
           print(f'Registered row: value={value} name={name} date={date}')
-          print(f'Registered rankedlineage SHA256: {registered_sha}')
+          print(f'Registered rankedlineage SHA256: {registered_ranked_sha}')
+          print(f'Registered nodes SHA256: {registered_nodes_sha}')
           print(f'Registered rankedlineage path: {ranked}')
-          print(f'Expected nodes path: {nodes}')
+          print(f'Registered nodes path: {nodes}')
 
           if not ranked.is_absolute():
               print('FAIL: registered rankedlineage path is not absolute.')
@@ -147,8 +147,11 @@ jobs:
           nodes_sha = hashlib.sha256(nodes.read_bytes()).hexdigest()
           print(f'Installed rankedlineage SHA256: {ranked_sha}')
           print(f'Installed nodes SHA256: {nodes_sha}')
-          if ranked_sha != registered_sha:
+          if ranked_sha != registered_ranked_sha:
               print('FAIL: registered rankedlineage SHA256 does not match installed file.')
+              sys.exit(1)
+          if nodes_sha != registered_nodes_sha:
+              print('FAIL: registered nodes SHA256 does not match installed file.')
               sys.exit(1)
 
           fixture_zip = Path('galaxy/data_manager/test-data/new_taxdump_test.zip')

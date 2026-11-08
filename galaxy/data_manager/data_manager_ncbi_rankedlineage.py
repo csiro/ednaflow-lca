@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install a versioned NCBI rankedlineage.dmp snapshot for eDNAFlow LCA."""
+"""Install a versioned NCBI rank-aware taxonomy snapshot for eDNAFlow LCA."""
 
 import argparse
 import hashlib
@@ -26,9 +26,16 @@ def sha256_file(path):
     return digest.hexdigest()
 
 
+def combined_snapshot_digest(rankedlineage_sha256, nodes_sha256):
+    digest = hashlib.sha256()
+    digest.update(f"rankedlineage.dmp:{rankedlineage_sha256}\n".encode("ascii"))
+    digest.update(f"nodes.dmp:{nodes_sha256}\n".encode("ascii"))
+    return digest.hexdigest()
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Install an NCBI rankedlineage.dmp snapshot for eDNAFlow LCA"
+        description="Install NCBI rankedlineage.dmp and nodes.dmp for eDNAFlow LCA"
     )
     parser.add_argument("--output", required=True)
     parser.add_argument("--extra-files-path", required=True)
@@ -39,37 +46,47 @@ def main():
     output = Path(args.output).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
 
-    # Galaxy supplies the real output dataset extra-files directory. Data Manager
-    # move sources are resolved relative to this directory.
     extra_files = Path(args.extra_files_path).resolve()
     extra_files.mkdir(parents=True, exist_ok=True)
 
     archive = extra_files / "new_taxdump.zip"
-    taxonomy = extra_files / "rankedlineage.dmp"
+    rankedlineage = extra_files / "rankedlineage.dmp"
+    nodes = extra_files / "nodes.dmp"
 
     if args.source_archive:
         shutil.copyfile(args.source_archive, archive)
     else:
         urllib.request.urlretrieve(ncbi_url(), archive)
 
+    required_members = ("rankedlineage.dmp", "nodes.dmp")
     try:
         with zipfile.ZipFile(archive) as zf:
-            if "rankedlineage.dmp" not in zf.namelist():
+            missing_members = [name for name in required_members if name not in zf.namelist()]
+            if missing_members:
                 raise RuntimeError(
-                    "rankedlineage.dmp was not found in the NCBI taxonomy archive"
+                    "Required files were not found in the NCBI taxonomy archive: "
+                    + ", ".join(missing_members)
                 )
-            with zf.open("rankedlineage.dmp") as source, open(taxonomy, "wb") as target:
-                shutil.copyfileobj(source, target)
+            for member, destination in (
+                ("rankedlineage.dmp", rankedlineage),
+                ("nodes.dmp", nodes),
+            ):
+                with zf.open(member) as source, open(destination, "wb") as target:
+                    shutil.copyfileobj(source, target)
     finally:
         if archive.exists():
             archive.unlink()
 
-    if not taxonomy.is_file() or taxonomy.stat().st_size == 0:
-        raise RuntimeError("Extracted rankedlineage.dmp is missing or empty")
+    for path in (rankedlineage, nodes):
+        if not path.is_file() or path.stat().st_size == 0:
+            raise RuntimeError(f"Extracted {path.name} is missing or empty")
 
-    checksum = sha256_file(taxonomy)
+    rankedlineage_sha256 = sha256_file(rankedlineage)
+    nodes_sha256 = sha256_file(nodes)
+    snapshot_sha256 = combined_snapshot_digest(rankedlineage_sha256, nodes_sha256)
+
     snapshot_date = date.today().isoformat()
-    checksum_prefix = checksum[:8]
+    checksum_prefix = snapshot_sha256[:8]
     value = f"ncbi-{snapshot_date}-{checksum_prefix}"
     display_name = args.name or f"NCBI Taxonomy {snapshot_date} ({checksum_prefix})"
 
@@ -80,8 +97,10 @@ def main():
                     "value": value,
                     "name": display_name,
                     "date": snapshot_date,
+                    "rankedlineage_sha256": rankedlineage_sha256,
+                    "nodes_sha256": nodes_sha256,
                     "path": "rankedlineage.dmp",
-                    "sha256": checksum,
+                    "nodes_path": "nodes.dmp",
                 }
             ]
         }
@@ -92,7 +111,9 @@ def main():
 
     print(f"Installed {display_name}")
     print(f"Snapshot ID: {value}")
-    print(f"SHA256: {checksum}")
+    print(f"rankedlineage.dmp SHA256: {rankedlineage_sha256}")
+    print(f"nodes.dmp SHA256: {nodes_sha256}")
+    print(f"Combined snapshot SHA256: {snapshot_sha256}")
 
 
 if __name__ == "__main__":
