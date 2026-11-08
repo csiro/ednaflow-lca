@@ -10,17 +10,38 @@ from collections import defaultdict
 from pathlib import Path
 
 RANKS = ("domain", "phylum", "class", "order", "family", "genus", "species")
-EXCLUDED = tuple(x.lower() for x in (
-    'uncultured bacterium','uncultured organism','uncultured prokaryote','uncultured eukaryote',
-    'uncultured marine eukaryote','uncultured marine picoeukaryote','uncultured Chlorophyta',
-    'marine metazoan environmental sample','zooplankton environmental sample','uncultured fungus',
-    'uncultured metazoan','eukaryote marine clone OLI11008','eukaryotic picoplankton environmental sample',
-    'uncultured alveolate','uncultured ciliate','uncultured Banisveld eukaryote','uncultured chlorophyta',
-    'uncultured prasinophyte','uncultured Rhizaria','uncultured stramenopile','uncultured microeukaryote',
-    'uncultured marine dinoflagellate','uncultured Cryptophyta','Stramenopiles sp. MAST',
-    'eukaryote clone OLI11008','marine Metazoa environmental sample','Dinophyta sp.',
-    'invertebrate environmental sample'))
-
+EXCLUDED = (
+    "uncultured bacterium",
+    "uncultured organism",
+    "uncultured prokaryote",
+    "uncultured eukaryote",
+    "uncultured marine eukaryote",
+    "uncultured marine picoeukaryote",
+    "uncultured Chlorophyta",
+    "marine metazoan environmental sample",
+    "zooplankton environmental sample",
+    "uncultured fungus",
+    "uncultured metazoan",
+    "eukaryote marine clone",
+    "eukaryotic picoplankton environmental sample",
+    "uncultured alveolate",
+    "uncultured ciliate",
+    "uncultured Banisveld eukaryote",
+    "uncultured chlorophyta",
+    "uncultured prasinophyte",
+    "uncultured Rhizaria",
+    "uncultured stramenopile",
+    "uncultured microeukaryote",
+    "uncultured marine dinoflagellate",
+    "uncultured prasinophyte",
+    "uncultured Cryptophyta",
+    "Stramenopiles sp. MAST",
+    "eukaryote clone OLI11008",
+    "marine Metazoa environmental sample",
+    "Dinophyta sp.",
+    "invertebrate environmental sample",
+    "uncultured eukaryote",
+)
 def read_feature_table(path: Path):
     with path.open(newline='', encoding='utf-8-sig') as h:
         rows=list(csv.reader(h, delimiter='\t'))
@@ -110,11 +131,17 @@ def run(args):
     taxonomy=read_taxonomy(Path(args.taxonomy))
     hits=read_blast(Path(args.blast_results))
     selected,unique_counts=select_hits(hits,args.query_coverage,args.percent_identity,args.identity_difference)
-    usable=[]; missing=set()
-    for h in selected:
-        if any(term in (h['common'] or '').lower() for term in EXCLUDED): continue
-        if h['taxid'] not in taxonomy: missing.add(h['taxid']); continue
-        usable.append(h)
+usable=[]; missing=set()
+for h in selected:
+    if h['taxid'] not in taxonomy:
+        missing.add(h['taxid'])
+        continue
+
+    exclusion_text = "\t".join(taxonomy[h['taxid']]) + "\t" + "\t".join(h['raw'])
+    if any(term in exclusion_text for term in EXCLUDED):
+        continue
+
+    usable.append(h)
     grouped=defaultdict(list)
     for h in usable: grouped[h['feature']].append(h)
     assigned=0
