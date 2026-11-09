@@ -93,6 +93,10 @@ def _read_taxonomy_with_provenance(path: Path, nodes_path: Path | None = None):
             species = fields[2]
             domain = fields[9] or fields[8]
             lineage = [domain, fields[7], fields[6], fields[5], fields[4], fields[3], species]
+            if nodes_path is not None and taxid not in current_ranks:
+                raise ValueError(
+                    f"nodes.dmp has no rank entry for taxonomy id {taxid}"
+                )
             current_rank = current_ranks.get(taxid, "")
             rank_index = {
                 "superkingdom": 0, "domain": 0, "phylum": 1, "class": 2,
