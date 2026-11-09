@@ -91,7 +91,7 @@ def _read_taxonomy_with_provenance(path: Path, nodes_path: Path | None = None):
             taxid = fields[0]
             taxon_name = fields[1]
             species = fields[2]
-            domain = fields[9] or fields[8]
+            domain = fields[9]
             lineage = [domain, fields[7], fields[6], fields[5], fields[4], fields[3], species]
             if nodes_path is not None and taxid not in current_ranks:
                 raise ValueError(
