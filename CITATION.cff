@@ -1,9 +1,16 @@
 cff-version: 1.2.0
-message: "Cite the original eDNAFlow paper and this software release."
+message: >-
+  If you use this standalone adaptation, cite this software release and the
+  original eDNAFlow paper that provides the foundational LCA method.
 title: "eDNAFlow LCA standalone adaptation"
 version: 0.1.0
-license: GPL-3.0-only
 type: software
+license: GPL-3.0-only
+repository-code: "https://github.com/csiro/ednaflow-lca"
+authors:
+  - family-names: Berry
+    given-names: Olly
+    affiliation: CSIRO
 preferred-citation:
   type: article
   title: "eDNAFlow, an automated, reproducible and scalable workflow for analysis of environmental DNA sequences exploiting Nextflow and Singularity"
@@ -12,4 +19,31 @@ preferred-citation:
   authors:
     - family-names: Mousavi-Derazmahalleh
       given-names: Mahsa
-repository-code: "REPLACE_WITH_APPROVED_CSIRO_PUBLIC_REPOSITORY"
+    - family-names: Stott
+      given-names: Audrey
+    - family-names: Lines
+      given-names: Rose
+    - family-names: Peverley
+      given-names: Georgia
+    - family-names: Nester
+      given-names: Georgia
+    - family-names: Simpson
+      given-names: Tiffany
+    - family-names: Zawierta
+      given-names: Michal
+    - family-names: De La Pierre
+      given-names: Marco
+    - family-names: Bunce
+      given-names: Michael
+    - family-names: Christophersen
+      given-names: Claus T.
+references:
+  - type: software
+    title: "eDNAFlow"
+    authors:
+      - family-names: Mousavi-Derazmahalleh
+        given-names: Mahsa
+    repository-code: "https://github.com/mahsa-mousavi/eDNAFlow"
+    notes: >-
+      Foundational upstream implementation. This CSIRO software release is a
+      modified GPL-3.0-only derivative of the eDNAFlow LCA component.
