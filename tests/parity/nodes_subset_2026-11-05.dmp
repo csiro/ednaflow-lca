@@ -1,0 +1,526 @@
+7257	|	55949	|	species	|	DR	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+27454	|	7372	|	species	|	CV	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+38775	|	9282	|	species	|	AF	|	2	|	1	|	1	|	1	|	2	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+42027	|	32320	|	species	|	DK	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+48326	|	32380	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+48623	|	48622	|	species	|	EC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+58824	|	58823	|	species	|	PI	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+60717	|	32352	|	species	|	DP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+60768	|	484216	|	species	|	PM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+74549	|	32352	|	species	|	DB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+93883	|	93882	|	species	|	TB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+94109	|	32352	|	species	|	DW	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+104788	|	104787	|	species	|	MQ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+106986	|	106985	|	species	|	OD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+107007	|	106985	|	species	|	OA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+107009	|	106985	|	species	|	OS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+109858	|	41305	|	species	|	CV	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+119071	|	99768	|	species	|	GG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+137356	|	32352	|	species	|	DC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+214255	|	214254	|	species	|	NG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+317506	|	333507	|	species	|	BE	|	11	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	uncultured	|		|		|	0	|	0	|	1	|
+320267	|	320266	|	species	|	CP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+332538	|	94028	|	species	|	AP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+332797	|	332796	|	species	|	MT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+336591	|	280405	|	species	|	LC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+344256	|	248898	|	species	|	EE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+344272	|	344271	|	species	|	IA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+344291	|	344290	|	species	|	PC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+414277	|	341050	|	species	|	ON	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+475354	|	475353	|	species	|	PC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+484299	|	484197	|	species	|	PA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+488259	|	2635992	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+496196	|	2648464	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+496220	|	2648464	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+536884	|	41080	|	species	|	AM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+536890	|	41305	|	species	|	CP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+542971	|	38050	|	species	|	HF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+542978	|	38050	|	species	|	HP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+555065	|	555064	|	subspecies	|	LM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+555066	|	315989	|	species	|	LN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+571955	|	369594	|	species	|	MG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+572834	|	572833	|	species	|	DP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+574919	|	29052	|	species	|	CP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+590155	|	2685333	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+591391	|	591390	|	species	|	TG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+642819	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+686601	|	36165	|	species	|	MR	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+687127	|	687126	|	species	|	SE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+690681	|	690678	|	species	|	LP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+691671	|	691670	|	species	|	PE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+695762	|	2640533	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+695828	|	2645783	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+722669	|	704709	|	species	|	DR	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+753204	|	214280	|	species	|	ND	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+753212	|	236779	|	species	|	OS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+795040	|	41080	|	species	|	AM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+818373	|	265461	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+829958	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+830023	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+830489	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+832162	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+846874	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+848561	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+876837	|	236622	|	species	|	NP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+878120	|	177440	|	species	|	MW	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+942351	|	704882	|	species	|	SP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+942384	|	942377	|	species	|	DU	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+943746	|	572712	|	species	|	EA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+963305	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+987926	|	319982	|	species	|	DC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+989005	|	706034	|	species	|	DD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+994028	|	2685525	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+997514	|	706080	|	species	|	ML	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1008864	|	1008863	|	species	|	OM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1042824	|	443577	|	species	|	BT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1068836	|	2648472	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1073648	|	1073647	|	species	|	MC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1098023	|	2648464	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1098082	|	2633651	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1098215	|	2621418	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1098810	|	2638268	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1102550	|	993519	|	species	|	EG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1103270	|	705566	|	species	|	NG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1105838	|	2638268	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1106945	|	1106940	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1110811	|	689128	|	species	|	EM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1113111	|	581479	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1123328	|	47766	|	species	|	AM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1128488	|	1028604	|	species	|	SG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1137563	|	186121	|	species	|	MT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1139845	|	993519	|	species	|	EG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1140680	|	695283	|	species	|	BE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1178092	|	704462	|	species	|	DQ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1178263	|	1178262	|	species	|	EA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1187256	|	265461	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1187257	|	265461	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1187579	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1205973	|	41305	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1207729	|	2637594	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1213120	|	2649788	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1231954	|	990170	|	species	|	EB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1239711	|	1099666	|	species	|	IE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1256347	|	694636	|	species	|	TB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1260819	|	35571	|	species	|	BH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1266475	|	7372	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1285561	|	1454786	|	species	|	DH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1291985	|	1291983	|	species	|	SL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1308814	|	107870	|	species	|	HF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1309575	|	156933	|	subspecies	|	DM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1319819	|	7338	|	species	|	ME	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1333047	|	2640469	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1334876	|	1334964	|	species	|	MC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1338344	|	1338343	|	species	|	AV	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1368024	|	1368023	|	species	|	CI	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370685	|	1368833	|	species	|	AH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370748	|	1368842	|	species	|	AC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370868	|	1073609	|	species	|	AP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370895	|	47766	|	species	|	AE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370897	|	47766	|	species	|	AP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370899	|	47766	|	species	|	AP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1370969	|	2621070	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1370971	|	2621070	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1371196	|	1280010	|	species	|	AA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1371603	|	1368952	|	species	|	BT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1371616	|	1368956	|	species	|	BC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1371829	|	694877	|	species	|	CD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1372054	|	1369018	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1372227	|	2625625	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1372251	|	1369056	|	species	|	CA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1372958	|	704462	|	species	|	DC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1372960	|	704462	|	species	|	DO	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373003	|	1369131	|	species	|	EC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373021	|	320040	|	species	|	EM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373110	|	1369149	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373123	|	1369151	|	species	|	ED	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373321	|	1369184	|	species	|	EC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373322	|	1369184	|	species	|	ED	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373323	|	1369184	|	species	|	EM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373393	|	1256483	|	species	|	EG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373510	|	1369196	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373729	|	1369220	|	species	|	GL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1373754	|	2646777	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373779	|	2646777	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373780	|	2646777	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373782	|	2646777	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373799	|	2646777	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373889	|	2619794	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1373987	|	1369249	|	species	|	HO	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374173	|	581492	|	species	|	HP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374205	|	581492	|	species	|	HZ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374425	|	344271	|	species	|	IS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374610	|	1369333	|	species	|	LR	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374962	|	1073647	|	species	|	MC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1374978	|	1073647	|	species	|	MH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375277	|	1369432	|	species	|	MC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375345	|	1369449	|	species	|	NN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375657	|	106985	|	species	|	OF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375660	|	106985	|	species	|	OJ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375662	|	106985	|	species	|	OL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375663	|	106985	|	species	|	OM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375664	|	106985	|	species	|	ON	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375670	|	106985	|	species	|	OS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1375850	|	2618979	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376132	|	1073686	|	species	|	PN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376261	|	2645957	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376472	|	695612	|	species	|	PA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376473	|	695612	|	species	|	PD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376476	|	695612	|	species	|	PL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376479	|	2626119	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376518	|	2627412	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376559	|	2627412	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376614	|	1369589	|	species	|	PA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376615	|	1369589	|	species	|	PB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376616	|	1369589	|	species	|	PE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376617	|	1369589	|	species	|	PL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376620	|	2645413	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376655	|	3409733	|	species	|	AH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376656	|	2056496	|	species	|	TM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376657	|	344292	|	species	|	PM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376661	|	2056496	|	species	|	TN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376671	|	2631613	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1376676	|	2056496	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376765	|	581988	|	species	|	PJ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1376820	|	2629163	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1377096	|	753426	|	species	|	SC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377361	|	694878	|	species	|	TC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377369	|	694878	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377655	|	2637873	|	species	|	US	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1377659	|	1369765	|	species	|	UL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377910	|	572917	|	species	|	SA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377912	|	572917	|	species	|	SA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1377915	|	572917	|	species	|	SE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1379503	|	2634301	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1380127	|	7329	|	species	|	LK	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1391747	|	320040	|	species	|	EA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1391823	|	1106109	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1395059	|	3407075	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1410092	|	1271999	|	species	|	EC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1418670	|	706034	|	species	|	DH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1426876	|	1099783	|	species	|	PE	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1429258	|	694737	|	species	|	CH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1430674	|	704880	|	species	|	SD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1430755	|	1430754	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1431104	|	2639895	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1446289	|	2612078	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1454697	|	1454679	|	species	|	NC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1454707	|	1454706	|	species	|	PB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1454719	|	1454706	|	species	|	PN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1474455	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1475153	|	1197748	|	species	|	EJ	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1475191	|	1475190	|	species	|	SG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1483945	|	484237	|	species	|	PP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1485376	|	29052	|	species	|	CL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1485382	|	29052	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1485401	|	29052	|	species	|	CN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1485803	|	706034	|	species	|	DP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1489034	|	1489033	|	species	|	EA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1489041	|	1489040	|	species	|	FL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1489329	|	1983397	|	species	|	PM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1498833	|	572712	|	species	|	EA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1511203	|	1511202	|	species	|	KL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1535990	|	2618235	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1555450	|	706009	|	species	|	BH	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1555586	|	694877	|	species	|	CP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1555776	|	320040	|	species	|	EN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1555896	|	1101094	|	species	|	EP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1556055	|	1556054	|	species	|	CL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1557676	|	112916	|	species	|	MK	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1557693	|	36978	|	species	|	MM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558026	|	694867	|	species	|	PO	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558049	|	221120	|	species	|	PM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558064	|	655173	|	species	|	PV	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558067	|	1556153	|	species	|	PC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558071	|	1369580	|	species	|	PA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558102	|	2056496	|	species	|	TF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558166	|	1558165	|	species	|	PD	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558214	|	695727	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558277	|	695738	|	species	|	SL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558278	|	695738	|	species	|	SP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1558363	|	695700	|	species	|	TC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1587166	|	41305	|	species	|	CN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1587167	|	41305	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1587168	|	41305	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1587169	|	41305	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1604464	|	2644754	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1622705	|	156408	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1631362	|	7329	|	species	|	LC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1646306	|	279430	|	species	|	WL	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1649103	|	1649102	|	species	|	ET	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1657129	|	29024	|	species	|	PP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1661834	|	1556148	|	species	|	MP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1665001	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1665003	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1665005	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1665007	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1665008	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1665009	|	174630	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1674735	|	131633	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1675097	|	708048	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1690515	|	221122	|	species	|	DC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1692618	|	137488	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1693968	|	2607065	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1694215	|	304229	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1703348	|	153169	|	species	|	CM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1709618	|	41305	|	species	|	CN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1709619	|	41305	|	species	|	CT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1710463	|	1710462	|	species	|	ED	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1720740	|	229639	|	species	|	PG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1726196	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1742466	|	1742464	|	species	|	AC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1742467	|	1742464	|	species	|	AM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1744215	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1744256	|	333790	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1754579	|	2643806	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1754725	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1767276	|	323686	|	species	|	TC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1769271	|	156933	|	subspecies	|	DM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1776813	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776818	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776819	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776821	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776822	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776824	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776825	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1776826	|	443624	|	species	|	BN	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1798868	|	2637319	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1817602	|	35571	|	species	|	BF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1821765	|	2649381	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1823257	|	2637313	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1829270	|	2636983	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1845022	|	41305	|	species	|	CG	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1845023	|	41305	|	species	|	CI	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1845344	|	167070	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1858007	|	347742	|	species	|	DR	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1869476	|	289280	|	species	|	AF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1869605	|	513583	|	species	|	CA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1869912	|	214137	|	species	|	ER	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1874822	|	60802	|	species	|	AC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1875016	|	289280	|	species	|	AT	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1881746	|	670581	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1881757	|	2614034	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1881774	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1881795	|	179429	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1887011	|	2637313	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1888072	|	987055	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1888100	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1891142	|	2643806	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1897949	|	1383620	|	species	|	BS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1899714	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1899789	|	2646718	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1899790	|	2646718	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900858	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900872	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900873	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900886	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900891	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900901	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1900902	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1902808	|	7329	|	species	|	LA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1903332	|	82169	|	species	|	PB	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1911954	|	1742478	|	species	|	AC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1918074	|	1649102	|	species	|	EO	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1918128	|	569063	|	species	|	PP	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1918215	|	1918214	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1918263	|	1918262	|	species	|	LI	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1935914	|	1935912	|	species	|	ST	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1944119	|	484237	|	species	|	PA	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1950002	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1956638	|	2644617	|	species	|	FS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1956788	|	2644761	|	species	|	BS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1973634	|	2649853	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1976759	|	705566	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1987668	|	36165	|	species	|	ME	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+1987714	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1988045	|	2619305	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989184	|	137492	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989348	|	114954	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989663	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989683	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989699	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1989802	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1990070	|	1722913	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1991787	|	305589	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1992109	|	137492	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1992668	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1992698	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1992972	|	1722913	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1992980	|	1722913	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1994832	|	305589	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1995673	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1995676	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1995742	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1995743	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1995783	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1998236	|	177248	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1998698	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1998771	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1998833	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+1999031	|	1722913	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001114	|	137492	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001132	|	137492	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001657	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001681	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001739	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001741	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001745	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001756	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001762	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001767	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001857	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2001862	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2013249	|	706034	|	species	|	DW	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2013370	|	691654	|	species	|	MM	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2032968	|	167070	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2040057	|	2639914	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2040058	|	2639914	|	species	|	GS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2040389	|	699834	|	species	|	TC	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2085918	|	484074	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2113839	|	2642497	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2113840	|	2642497	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2113842	|	2642497	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2113843	|	2642497	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2114563	|	2623423	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2115452	|	484074	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2163826	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2167326	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2173825	|	2688539	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2175353	|	880183	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2203480	|	47766	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2212220	|	712022	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2212238	|	712022	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2216227	|	2637313	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2216230	|	2637313	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2227605	|	914283	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2277074	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2277199	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2278101	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2278349	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2279772	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280020	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280059	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280237	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280829	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280862	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2280945	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2281530	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2281683	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2282001	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2282043	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2304128	|	1414594	|	species	|	GF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2317283	|	2636378	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2317284	|	2636378	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2317285	|	2636378	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2317288	|	2636378	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2318457	|	500585	|	species	|	LS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2324081	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2332763	|	2637313	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2358948	|	2646504	|	species	|	BS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2361047	|	2659304	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2361084	|	2659304	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2361087	|	2659304	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2361088	|	2659304	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2361094	|	2659304	|	species	|	HS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2363084	|	2634374	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2363093	|	2634374	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2366881	|	670581	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2366913	|	670581	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2366914	|	670581	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2367236	|	2624894	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2374832	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2375202	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2375280	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2375607	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2376208	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2377577	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2377712	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2377905	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378044	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378068	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378084	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378618	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378636	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2378711	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379354	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379622	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379647	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379651	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379652	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379661	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379694	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2379696	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2391320	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2393205	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2393537	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2393847	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2405594	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2405781	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2406069	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2406139	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2406168	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2406219	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2420070	|	47766	|	species	|	AF	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2453288	|	2638065	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455019	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455467	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455482	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455504	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455545	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455554	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455616	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455679	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455692	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455756	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455809	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2455810	|	708337	|	species	|	ES	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2457475	|	2635501	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2457476	|	2635501	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2476886	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2476887	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2476888	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2476889	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2476890	|	331533	|	species	|	RS	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|		|		|		|	0	|	0	|	1	|
+2478697	|	704860	|	species	|	RI	|	1	|	1	|	1	|	1	|	5	|	1	|	1	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2484483	|	2649788	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2489734	|	2633941	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2498471	|	1280478	|	species	|	MC	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2498514	|	1280478	|	species	|	MT	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2505266	|	558352	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2505520	|	2646137	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2530612	|	2647451	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2531067	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2531283	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2531414	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2531496	|	329961	|	species	|	CS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2536558	|	2618618	|	species	|	MS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2539197	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2539298	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2539334	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2542387	|	265459	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2542410	|	265459	|	species	|	SS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2547248	|	2420070	|	subspecies	|	AF	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2548481	|	1139994	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2554144	|	705566	|	species	|	NS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2556965	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2557010	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2557026	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2566338	|	82588	|	species	|	AU	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2566552	|	60815	|	species	|	DA	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2567325	|	347437	|	species	|	PE	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2580834	|	2640533	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2580849	|	2640533	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2580850	|	2640533	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2580853	|	2640533	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2580921	|	2633651	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2580933	|	2633651	|	species	|	AS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2582124	|	179429	|	species	|	TS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2582714	|	2582713	|	species	|	CM	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2582719	|	2582716	|	species	|	NB	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2582720	|	2582716	|	species	|	NI	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2582721	|	2582716	|	species	|	NL	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2584306	|	2639039	|	species	|	OS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2598488	|	355912	|	species	|	GR	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2609385	|	66618	|	species	|	RM	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|	code compliant; specified	|		|		|	1	|	0	|	1	|
+2611186	|	2611185	|	species	|	DS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2611332	|	2611331	|	species	|	US	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
+2651588	|	82169	|	species	|	PS	|	1	|	1	|	1	|	1	|	5	|	1	|	0	|	0	|		|		|		|	0	|	0	|	1	|
