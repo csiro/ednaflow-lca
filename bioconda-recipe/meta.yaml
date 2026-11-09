@@ -11,11 +11,11 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
 requirements:
   host:
-    - python >=3.9
+    - python >=3.10
     - pip
     - setuptools >=61
   run:
-    - python >=3.9
+    - python >=3.10
 test:
   commands:
     - ednaflow-lca --help
