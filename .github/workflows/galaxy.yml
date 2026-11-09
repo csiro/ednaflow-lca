@@ -64,11 +64,27 @@ jobs:
           test -f /tmp/ednaflow-dm/result_files/rankedlineage.dmp
           test -f /tmp/ednaflow-dm/result_files/nodes.dmp
           python -m json.tool /tmp/ednaflow-dm/result.json
+      - name: Build isolated Data Manager Tool Data Table
+        run: |
+          mkdir -p /tmp/ednaflow-dm-galaxy/tool-data
+          : > /tmp/ednaflow-dm-galaxy/tool-data/ednaflow_lca_taxonomy.loc
+          cat > /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml <<'EOF'
+          <tables>
+            <table name="ednaflow_lca_taxonomy" comment_char="#" allow_duplicate_entries="False">
+              <columns>value, name, date, rankedlineage_sha256, nodes_sha256, path, nodes_path</columns>
+              <file path="/tmp/ednaflow-dm-galaxy/tool-data/ednaflow_lca_taxonomy.loc" />
+            </table>
+          </tables>
+          EOF
+          cat /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml
+
       - name: Execute NCBI taxonomy Data Manager test
         run: |
           set -o pipefail
           planemo test galaxy/data_manager/data_manager_ncbi_rankedlineage.xml \
             --no_dependency_resolution \
+            --tool_data_table /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml \
+            --tool_data_path /tmp/ednaflow-dm-galaxy/tool-data \
             --no_cleanup \
             --test_output_json data_manager_test_output.json \
             2>&1 | tee data_manager_planemo.log
