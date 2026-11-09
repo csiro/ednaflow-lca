@@ -28,12 +28,12 @@ ednaflow-lca
                type="data"
                format="tabular"
                label="OTU/ZOTU/ASV count table"
-               help="First header must begin with #. Feature IDs must match BLAST query IDs." />
+               help="The first column is the feature identifier and must have a non-empty header (for example #ID, feature_id, OTU, ASV, or Zotu). Feature IDs must match BLAST query IDs." />
         <param name="blast_results"
                type="data"
                format="tabular"
                label="eDNAFlow-format BLAST results"
-               help="At least 21 columns; qseqid column 1, staxids 3, pident 7, qcovs 21." />
+               help="Requires exactly the 22-column eDNAFlow BLAST tabular contract. qseqid is column 1, staxids 3, pident 7, stitle 18, qcovs 21, and qcovhsp 22." />
 
         <conditional name="taxonomy_source">
             <param name="source" type="select" label="Taxonomy source">
@@ -133,28 +133,62 @@ ednaflow-lca
     <help><![CDATA[
 eDNAFlow LCA is a standalone offline adaptation of the LCA component from eDNAFlow.
 
+**Inputs**
+
+The count table is tabular. Its first column contains the feature identifier and
+must have a non-empty header such as ``#ID``, ``feature_id``, ``OTU``, ``ASV`` or
+``Zotu``. Feature identifiers must match BLAST query IDs.
+
+BLAST input uses the exact 22-column eDNAFlow tabular contract. This tool is not
+a generic parser for arbitrary BLAST ``outfmt 6`` layouts. Required positions
+include qseqid column 1, staxids column 3, pident column 7, stitle column 18,
+qcovs column 21 and qcovhsp column 22. Feature records may be interleaved in the
+physical file; filtering groups hits by feature while preserving each feature's
+hit order.
+
 **Taxonomy**
 
 For routine NCBI analysis, choose an installed taxonomy snapshot. Each managed
 snapshot contains both ``rankedlineage.dmp`` and ``nodes.dmp`` so the current
-taxon's NCBI rank can be distinguished from its terminal taxon name. This makes
-species/genus assignment rank-aware while preserving infraspecific names as
-provenance in the underlying taxonomy evidence.
+taxon's NCBI rank can be distinguished from its terminal taxon name. Managed
+references are rank-aware and are versioned by date plus a checksum-derived
+snapshot ID.
 
 Choose custom taxonomy files for historical or specialist analyses. A custom
-``nodes.dmp`` is optional: when supplied with NCBI ``rankedlineage.dmp`` the run
-is rank-aware; when omitted, legacy/simple custom taxonomy behaviour is retained.
+``nodes.dmp`` is optional. When supplied with NCBI ``rankedlineage.dmp`` the run
+is rank-aware and every ranked-lineage taxid must have a corresponding nodes
+rank entry. When ``nodes.dmp`` is omitted, legacy/simple custom taxonomy
+behaviour is retained.
 
-The job does not download NCBI taxonomy. Managed references are installed by the
-Galaxy Data Manager and are versioned by date plus a checksum-derived snapshot ID.
+The analysis job never downloads NCBI taxonomy. Managed references are installed
+by the Galaxy Data Manager.
 
-**Filtering defaults**
+**Filtering and assignment**
 
-Defaults follow eDNAFlow: query coverage 100, percent identity 97, identity
-difference 1. The upstream iterative adjacent-hit filtering structure is retained,
-with identity differences compared numerically rather than lexicographically.
-Cross-domain qualifying evidence is reported as unresolved rather than retaining
-whichever domain appears first.
+Defaults follow eDNAFlow: query coverage 100, percent identity 97 and identity
+difference 1. The upstream iterative adjacent-hit filtering structure is
+retained, with identity differences compared numerically rather than
+lexicographically. Qualifying hits are evaluated per feature, so unrelated
+interleaved feature rows do not change another feature's filtering result.
+
+``dropped`` indicates that qualifying evidence disagrees at that rank and the
+LCA cannot retain that rank or ranks below it. Cross-domain disagreement is
+reported as unresolved/dropped rather than retaining whichever domain appeared
+first. Features with no usable qualifying taxonomy hit are not written as
+assignment rows; the summary reports aggregate counts for selected, usable and
+assigned records.
+
+**Outputs**
+
+``assignments`` contains the seven-rank LCA, feature ID, number of unique BLAST
+taxids and the input sample counts for assigned features.
+
+``filtered_hits`` provides per-hit provenance for the usable hits contributing
+to assignment, including subject ID, taxid, terminal ``taxon_name``, terminal
+``taxon_rank``, resolved domain-to-species lineage, percent identity, query
+coverage and common name.
+
+``summary`` reports processing counts and the filtering thresholds used.
     ]]></help>
     <citations>
         <citation type="doi">10.1111/1755-0998.13356</citation>
