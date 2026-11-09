@@ -146,8 +146,22 @@ def select_hits(rows, qcov_min, pident_min, diff):
         if key not in seen:
             seen.add(key)
             unique.append(hit)
+    feature_order = []
+    hits_by_feature = defaultdict(list)
+    for hit in unique:
+        feature = hit["feature"]
+        if feature not in hits_by_feature:
+            feature_order.append(feature)
+        hits_by_feature[feature].append(hit)
+
+    grouped_unique = [
+        hit
+        for feature in feature_order
+        for hit in hits_by_feature[feature]
+    ]
+
     selected = [
-        hit for hit in unique
+        hit for hit in grouped_unique
         if round(hit["qcov"], 2) >= round(qcov_min, 2)
         and round(hit["pident"], 2) >= round(pident_min, 2)
     ]
