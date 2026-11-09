@@ -1,12 +1,15 @@
 ﻿from pathlib import Path
 from types import SimpleNamespace
+import csv
 
 from ednaflow_lca.cli import run
 
 
 def rows(path):
     with open(path, encoding="utf-8") as handle:
-        return [line.rstrip("\n") for line in handle]
+        reader = csv.reader(handle, delimiter="\t")
+        next(reader)
+        return {row[7]: row for row in reader}
 
 
 def test_full_rank_aware_assignment_parity(tmp_path):
