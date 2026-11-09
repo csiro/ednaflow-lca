@@ -1,29 +1,39 @@
 {% set version = "0.1.0" %}
+
 package:
   name: ednaflow-lca
   version: {{ version }}
+
 source:
-  url: REPLACE_WITH_RELEASE_ARCHIVE
+  url: https://github.com/csiro/ednaflow-lca/archive/refs/tags/{{ version }}.tar.gz
   sha256: REPLACE_WITH_RELEASE_SHA256
+
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --no-cache-dir -vvv
+
 requirements:
   host:
-    - python >=3.9
+    - python >=3.10
     - pip
     - setuptools >=61
   run:
-    - python >=3.9
+    - python >=3.10
+
 test:
+  imports:
+    - ednaflow_lca
   commands:
     - ednaflow-lca --help
+
 about:
-  home: https://github.com/mahsa-mousavi/eDNAFlow
+  home: https://github.com/csiro/ednaflow-lca
   license: GPL-3.0-only
+  license_file: LICENSE
   summary: Offline standalone adaptation of eDNAFlow LCA taxonomy assignment
-  dev_url: https://github.com/mahsa-mousavi/eDNAFlow
+  dev_url: https://github.com/csiro/ednaflow-lca
+
 extra:
   recipe-maintainers:
     - ollybolly

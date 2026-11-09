@@ -1,0 +1,208 @@
+name: Independent differential review
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - review-remediation
+
+jobs:
+  differential-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build comparison harness
+        run: |
+          python review-tools/build_comparison_harness.py review-harness
+
+      - name: Inspect reconstructed harness
+        run: |
+          find review-harness -maxdepth 3 -type f | sort
+          echo
+          cat review-harness/cases/index.tsv
+
+      - name: Run comparison harness
+        run: |
+          cd review-harness
+          bash scripts/run_all.sh "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/src"
+
+      - name: Show differential results
+        if: always()
+        run: |
+          if [ -f review-harness/results/results.tsv ]; then
+            cat review-harness/results/results.tsv
+          else
+            echo "No results/results.tsv produced"
+          fi
+
+      - name: Show raw harness output
+        if: always()
+        run: |
+          if [ -f review-harness/results/console_output.txt ]; then
+            cat review-harness/results/console_output.txt
+          else
+            echo "No console_output.txt produced"
+          fi
+
+      - name: Require upstream parity for exclusion cases
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          required = {
+              "A_exclusion_via_taxonomy_name",
+              "B_eukaryote_marine_clone",
+              "C_case_of_excluded_term",
+              "X01_term_only_in_stitle",
+              "X02_term_only_in_sscinames",
+          }
+
+          failures = []
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in required and row["agree"].lower() != "yes":
+                      failures.append(
+                          (
+                              row["case"],
+                              row["feature"],
+                              row["upstream result"],
+                              row["ednaflow-lca result"],
+                          )
+                      )
+
+          if failures:
+              print("Exclusion parity failures:")
+              for case, feature, upstream, standalone in failures:
+                  print()
+                  print(f"CASE:       {case}")
+                  print(f"FEATURE:    {feature}")
+                  print(f"UPSTREAM:   {upstream}")
+                  print(f"STANDALONE: {standalone}")
+
+              sys.exit(1)
+
+          print("All required exclusion cases match upstream.")
+          PY
+
+      - name: Require safe handling of quoted BLAST rows
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          required = {
+              "I_quote_in_title",
+              "M_quote_merges_rows",
+          }
+
+          problems = []
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in required and row["agree"].lower() != "yes":
+                      problems.append(
+                          (
+                              row["case"],
+                              row["feature"],
+                              row["upstream result"],
+                              row["upstream exit"],
+                              row["ednaflow-lca result"],
+                              row["ednaflow-lca exit"],
+                              row["error messages"],
+                          )
+                      )
+
+          if problems:
+              print("Quoted-row parsing differences detected:")
+              for (
+                  case,
+                  feature,
+                  upstream,
+                  upstream_exit,
+                  standalone,
+                  standalone_exit,
+                  errors,
+              ) in problems:
+                  print()
+                  print(f"CASE:            {case}")
+                  print(f"FEATURE:         {feature}")
+                  print(f"UPSTREAM:        {upstream}")
+                  print(f"UPSTREAM EXIT:   {upstream_exit}")
+                  print(f"STANDALONE:      {standalone}")
+                  print(f"STANDALONE EXIT: {standalone_exit}")
+                  if errors:
+                      print(f"ERRORS:          {errors}")
+
+              sys.exit(1)
+
+          print("Quoted BLAST rows are handled compatibly and safely.")
+          PY
+
+      - name: Require numeric identity-difference semantics
+        run: |
+          python - <<'PY'
+          import csv
+          import sys
+
+          expected = {
+              "D02_diff2_floor80_gap14": "species Homo sapiens",
+              "D09_diff9_floor80_gap14": "species Homo sapiens",
+              "D10_diff10_floor97_gap2": "class Mammalia",
+          }
+
+          observed = {}
+
+          with open(
+              "review-harness/results/results.tsv",
+              newline="",
+              encoding="utf-8",
+          ) as handle:
+              reader = csv.DictReader(handle, delimiter="\t")
+
+              for row in reader:
+                  if row["case"] in expected:
+                      observed[row["case"]] = row["ednaflow-lca result"]
+
+          failures = []
+
+          for case, wanted in expected.items():
+              actual = observed.get(case)
+
+              if actual != wanted:
+                  failures.append((case, wanted, actual))
+
+          if failures:
+              print("Numeric identity-difference failures:")
+
+              for case, wanted, actual in failures:
+                  print()
+                  print(f"CASE:     {case}")
+                  print(f"EXPECTED: {wanted}")
+                  print(f"ACTUAL:   {actual}")
+
+              sys.exit(1)
+
+          print("Identity-difference filtering uses correct numeric semantics.")
+          PY

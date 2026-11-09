@@ -1,25 +1,162 @@
-<tool id="ednaflow_lca" name="eDNAFlow LCA" version="0.1.0+galaxy0" profile="23.0">
- <description>offline lowest-common-ancestor taxonomy assignment from BLAST results</description>
- <requirements><requirement type="package" version="0.1.0">ednaflow-lca</requirement></requirements>
- <command detect_errors="exit_code"><![CDATA[
-ednaflow-lca --feature-table '$feature_table' --blast-results '$blast_results' --taxonomy '$taxonomy'
---query-coverage '$query_coverage' --percent-identity '$percent_identity' --identity-difference '$identity_difference'
---assignments '$assignments' --filtered-hits '$filtered_hits' --summary '$summary'
- ]]></command>
- <inputs>
-  <param name="feature_table" type="data" format="tabular" label="OTU/ZOTU/ASV count table" help="First header must begin with #. Feature IDs must match BLAST query IDs."/>
-  <param name="blast_results" type="data" format="tabular" label="eDNAFlow-format BLAST results" help="At least 21 columns; qseqid column 1, staxids 3, pident 7, qcovs 21."/>
-  <param name="taxonomy" type="data" format="tabular" label="Ranked taxonomy" help="NCBI rankedlineage.dmp or tabular taxid plus domain-to-species ranks."/>
-  <param name="query_coverage" type="float" min="0" max="100" value="100" label="Minimum query coverage (%)"/>
-  <param name="percent_identity" type="float" min="0" max="100" value="97" label="Minimum percent identity"/>
-  <param name="identity_difference" type="float" min="0" value="1" label="Maximum identity difference from best hit"/>
- </inputs>
- <outputs>
-  <data name="assignments" format="tabular" label="${tool.name}: assignments"/>
-  <data name="filtered_hits" format="tabular" label="${tool.name}: filtered hits"/>
-  <data name="summary" format="tabular" label="${tool.name}: summary"/>
- </outputs>
- <tests><test expect_num_outputs="3"><param name="feature_table" value="features.tsv"/><param name="blast_results" value="blast.tsv"/><param name="taxonomy" value="taxonomy.tsv"/><output name="assignments"><assert_contents><has_text text="ZotuA"/><has_text text="dropped"/></assert_contents></output><output name="summary"><assert_contents><has_text text="assigned_features"/></assert_contents></output></test></tests>
- <help><![CDATA[Standalone offline adaptation of the LCA component from eDNAFlow. The taxonomy snapshot is an explicit input for reproducibility; the job does not download NCBI taxonomy. Defaults match eDNAFlow: qcov 100, identity 97, difference 1.]]></help>
- <citations><citation type="doi">10.1111/1755-0998.13356</citation></citations>
+<tool id="ednaflow_lca" name="eDNAFlow LCA" version="0.1.0+galaxy1" profile="23.0">
+    <description>offline lowest-common-ancestor taxonomy assignment from BLAST results</description>
+    <requirements>
+        <requirement type="package" version="0.1.0">ednaflow-lca</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+ednaflow-lca
+    --feature-table '$feature_table'
+    --blast-results '$blast_results'
+#if str($taxonomy_source.source) == 'managed'
+    --taxonomy '$taxonomy_source.taxonomy_snapshot.fields.path'
+    --taxonomy-nodes '$taxonomy_source.taxonomy_snapshot.fields.nodes_path'
+#else
+    --taxonomy '$taxonomy_source.taxonomy'
+    #if $taxonomy_source.taxonomy_nodes
+    --taxonomy-nodes '$taxonomy_source.taxonomy_nodes'
+    #end if
+#end if
+    --query-coverage '$query_coverage'
+    --percent-identity '$percent_identity'
+    --identity-difference '$identity_difference'
+    --assignments '$assignments'
+    --filtered-hits '$filtered_hits'
+    --summary '$summary'
+    ]]></command>
+    <inputs>
+        <param name="feature_table"
+               type="data"
+               format="tabular"
+               label="OTU/ZOTU/ASV count table"
+               help="First header must begin with #. Feature IDs must match BLAST query IDs." />
+        <param name="blast_results"
+               type="data"
+               format="tabular"
+               label="eDNAFlow-format BLAST results"
+               help="At least 21 columns; qseqid column 1, staxids 3, pident 7, qcovs 21." />
+
+        <conditional name="taxonomy_source">
+            <param name="source" type="select" label="Taxonomy source">
+                <option value="managed" selected="true">Installed NCBI taxonomy snapshot</option>
+                <option value="custom">Custom taxonomy files</option>
+            </param>
+            <when value="managed">
+                <param name="taxonomy_snapshot"
+                       type="select"
+                       label="NCBI taxonomy snapshot"
+                       help="Versioned NCBI taxonomy installed by the eDNAFlow LCA taxonomy Data Manager.">
+                    <options from_data_table="ednaflow_lca_taxonomy">
+                        <column name="name" index="1" />
+                        <column name="value" index="0" />
+                        <column name="path" index="5" />
+                        <column name="nodes_path" index="6" />
+                    </options>
+                </param>
+            </when>
+            <when value="custom">
+                <param name="taxonomy"
+                       type="data"
+                       format="tabular"
+                       label="Ranked taxonomy"
+                       help="NCBI rankedlineage.dmp or tabular taxid plus domain-to-species ranks." />
+                <param name="taxonomy_nodes"
+                       type="data"
+                       format="tabular"
+                       optional="true"
+                       label="NCBI nodes.dmp"
+                       help="Optional. Supply with rankedlineage.dmp for rank-aware handling of genus, species and infraspecific taxids. Omit for legacy/simple custom taxonomy behaviour." />
+            </when>
+        </conditional>
+
+        <param name="query_coverage" type="float" min="0" max="100" value="100" label="Minimum query coverage (%)" />
+        <param name="percent_identity" type="float" min="0" max="100" value="97" label="Minimum percent identity" />
+        <param name="identity_difference"
+               type="float"
+               min="0"
+               value="1"
+               label="Maximum identity difference between adjacent qualifying hits"
+               help="The upstream iterative hit-filtering structure is retained; identity differences are compared numerically to three decimal places." />
+    </inputs>
+    <outputs>
+        <data name="assignments" format="tabular" label="${tool.name}: assignments" />
+        <data name="filtered_hits" format="tabular" label="${tool.name}: filtered hits" />
+        <data name="summary" format="tabular" label="${tool.name}: summary" />
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="feature_table" value="features.tsv" />
+            <param name="blast_results" value="blast.tsv" />
+            <param name="taxonomy_source|source" value="custom" />
+            <param name="taxonomy_source|taxonomy" value="taxonomy.tsv" />
+            <output name="assignments">
+                <assert_contents>
+                    <has_text text="ZotuA" />
+                    <has_text text="dropped" />
+                </assert_contents>
+            </output>
+            <output name="filtered_hits">
+                <assert_contents>
+                    <has_text text="ZotuA" />
+                    <has_text text="percent_identity" />
+                </assert_contents>
+            </output>
+            <output name="summary">
+                <assert_contents>
+                    <has_text text="assigned_features" />
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="3">
+            <param name="feature_table" value="managed_features.tsv" />
+            <param name="blast_results" value="managed_blast.tsv" />
+            <param name="taxonomy_source|source" value="managed" />
+            <param name="taxonomy_source|taxonomy_snapshot" value="ncbi-managed-test" />
+            <output name="assignments">
+                <assert_contents>
+                    <has_text text="ZotuManaged" />
+                    <has_text text="Test species" />
+                </assert_contents>
+            </output>
+            <output name="filtered_hits">
+                <assert_contents>
+                    <has_text text="ZotuManaged" />
+                    <has_text text="percent_identity" />
+                </assert_contents>
+            </output>
+            <output name="summary">
+                <assert_contents>
+                    <has_text text="assigned_features" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help><![CDATA[
+eDNAFlow LCA is a standalone offline adaptation of the LCA component from eDNAFlow.
+
+**Taxonomy**
+
+For routine NCBI analysis, choose an installed taxonomy snapshot. Each managed
+snapshot contains both ``rankedlineage.dmp`` and ``nodes.dmp`` so the current
+taxon's NCBI rank can be distinguished from its terminal taxon name. This makes
+species/genus assignment rank-aware while preserving infraspecific names as
+provenance in the underlying taxonomy evidence.
+
+Choose custom taxonomy files for historical or specialist analyses. A custom
+``nodes.dmp`` is optional: when supplied with NCBI ``rankedlineage.dmp`` the run
+is rank-aware; when omitted, legacy/simple custom taxonomy behaviour is retained.
+
+The job does not download NCBI taxonomy. Managed references are installed by the
+Galaxy Data Manager and are versioned by date plus a checksum-derived snapshot ID.
+
+**Filtering defaults**
+
+Defaults follow eDNAFlow: query coverage 100, percent identity 97, identity
+difference 1. The upstream iterative adjacent-hit filtering structure is retained,
+with identity differences compared numerically rather than lexicographically.
+Cross-domain qualifying evidence is reported as unresolved rather than retaining
+whichever domain appears first.
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1111/1755-0998.13356</citation>
+    </citations>
 </tool>
