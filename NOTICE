@@ -1,20 +1,43 @@
 eDNAFlow LCA standalone adaptation
 
-This package adapts the Lowest Common Ancestor taxonomy-assignment component
-from eDNAFlow by Mahsa Mousavi-Derazmahalleh and contributors:
+This repository contains a modified derivative of the Lowest Common Ancestor
+(LCA) taxonomy-assignment component from eDNAFlow by Mahsa
+Mousavi-Derazmahalleh and contributors:
 https://github.com/mahsa-mousavi/eDNAFlow
 
-Original publication: Mousavi-Derazmahalleh et al. (2021), eDNAFlow, an
+Original publication:
+Mousavi-Derazmahalleh M, Stott A, Lines R, Peverley G, Nester G, Simpson T,
+Zawierta M, De La Pierre M, Bunce M, Christophersen CT (2021). eDNAFlow, an
 automated, reproducible and scalable workflow for analysis of environmental
-DNA sequences exploiting Nextflow and Singularity. Molecular Ecology Resources.
-DOI: 10.1111/1755-0998.13356
+DNA sequences exploiting Nextflow and Singularity. Molecular Ecology
+Resources 21:1697-1704. DOI: 10.1111/1755-0998.13356.
 
-Upstream files retained for provenance:
+The upstream runAssign_collapsedTaxonomy.py file identifies Mahsa
+Mousavi-Derazmahalleh as its author. The public upstream history records commit
+0c88d6f ("filter general uncultured stuff") for that LCA script. This notice
+does not assert that 0c88d6f is the provenance commit for every upstream file
+retained here.
+
+Upstream files retained at repository root for provenance:
 - upstream_runAssign_collapsedTaxonomy.py
 - upstream_working_function.py
 
-Changes: removed runtime NCBI downloads; made taxonomy an explicit input;
-added a named CLI, validation, deterministic outputs, tests, Python packaging,
-and a Galaxy wrapper; removed fixed intermediate paths and shell side effects.
+CSIRO modifications for this standalone adaptation include, at a high level:
+- removal of runtime shell-based taxonomy download and fixed intermediate files;
+- a packaged command-line interface with explicit inputs and outputs;
+- literal 22-column eDNAFlow BLAST parsing and input validation;
+- independently reviewed compatibility tests and documented corrections to
+  numeric identity-difference and cross-domain LCA behaviour;
+- rank-aware NCBI taxonomy using rankedlineage.dmp plus nodes.dmp;
+- per-hit taxon-name, taxon-rank and lineage provenance;
+- a Galaxy wrapper with managed and custom taxonomy routes;
+- a versioned Galaxy Data Manager with persistent reference registration,
+  independent checksums, structural validation and a finite download timeout;
+- Python packaging, automated tests and a Bioconda recipe.
 
-The derivative package is GPL-3.0. No endorsement by the original authors is implied.
+The approved public repository for this derivative is:
+https://github.com/csiro/ednaflow-lca
+
+This derivative is distributed under GNU GPL version 3 only (GPL-3.0-only).
+See LICENSE for the full licence text. No endorsement by the original eDNAFlow
+authors is implied.
