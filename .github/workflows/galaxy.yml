@@ -283,3 +283,31 @@ jobs:
               raise SystemExit('FAIL: managed wrapper test did not succeed')
           print('Managed taxonomy wrapper execution verified successfully.')
           PY
+
+  plain-wrapper-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and Planemo
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install planemo
+      - name: Execute plain wrapper test
+        run: |
+          planemo test galaxy/ednaflow_lca.xml \
+            --no_dependency_resolution \
+            --test_output_json plain_wrapper_test_output.json
+      - name: Show plain wrapper test report
+        if: always()
+        run: |
+          if [ -f plain_wrapper_test_output.json ]; then
+            cat plain_wrapper_test_output.json
+          else
+            echo "No plain wrapper Planemo JSON test report was produced"
+          fi
