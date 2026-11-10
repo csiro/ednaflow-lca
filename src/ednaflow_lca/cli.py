@@ -91,8 +91,12 @@ def _read_taxonomy_with_provenance(path: Path, nodes_path: Path | None = None):
             taxid = fields[0]
             taxon_name = fields[1]
             species = fields[2]
-            domain = fields[9] or fields[8]
+            domain = fields[9]
             lineage = [domain, fields[7], fields[6], fields[5], fields[4], fields[3], species]
+            if nodes_path is not None and taxid not in current_ranks:
+                raise ValueError(
+                    f"nodes.dmp has no rank entry for taxonomy id {taxid}"
+                )
             current_rank = current_ranks.get(taxid, "")
             rank_index = {
                 "superkingdom": 0, "domain": 0, "phylum": 1, "class": 2,
@@ -146,8 +150,22 @@ def select_hits(rows, qcov_min, pident_min, diff):
         if key not in seen:
             seen.add(key)
             unique.append(hit)
+    feature_order = []
+    hits_by_feature = defaultdict(list)
+    for hit in unique:
+        feature = hit["feature"]
+        if feature not in hits_by_feature:
+            feature_order.append(feature)
+        hits_by_feature[feature].append(hit)
+
+    grouped_unique = [
+        hit
+        for feature in feature_order
+        for hit in hits_by_feature[feature]
+    ]
+
     selected = [
-        hit for hit in unique
+        hit for hit in grouped_unique
         if round(hit["qcov"], 2) >= round(qcov_min, 2)
         and round(hit["pident"], 2) >= round(pident_min, 2)
     ]

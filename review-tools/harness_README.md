@@ -1,110 +1,95 @@
 # ednaflow-lca comparison harness
 
-This folder holds the test cases and scripts behind the two reviews of `ednaflow-lca` (the blind review and the informed review of 8 November 2026). Each case is a small input that isolates one behaviour. The runner puts the same case through the upstream eDNAFlow LCA scripts and through the `ednaflow-lca` command-line tool, so you can see side by side where they agree and where they differ.
+`review-tools/` retains the reproducible builder used during the independent
+review of `ednaflow-lca` and a short audit record describing how that review
+material relates to the maintained release tests.
 
-It is review scaffolding, not finished test code. Use it to:
+The review process included a blind review and an informed differential review
+on 8 November 2026. The comparison cases were used to isolate individual
+behaviours in the upstream eDNAFlow LCA scripts and the standalone
+`ednaflow-lca` adaptation. Findings were subsequently assessed individually:
+some were fixed, some became explicit intentional divergences, and speculative
+or unnecessarily fragile changes were not adopted automatically.
 
-- write failing tests before each fix;
-- start the upstream-comparison CI job recommended in the informed review (section P);
-- show reviewers exactly where the tool matches eDNAFlow and where it deliberately differs.
+The review involved AI-assisted analysis followed by human review, targeted
+regression tests, and release-remediation decisions. The maintained scientific
+behaviour is defined by the source, tests, `PARITY_REPORT.md`, `CHANGELOG.md`
+and release documentation, not by dated generated review output.
 
-Nothing here changes the `ednaflow-lca` code.
+## Files retained in this repository
 
-## What is in the folder
-
-| Path | Contents |
+| Path | Purpose |
 |---|---|
-| `cases/index.tsv` | One line per case: what it tests and which review finding it supports |
-| `cases/set1/` | 13 cases from the blind review (A to M) and their taxonomy file |
-| `cases/set2/` | 36 cases from the informed review (D, M, O, P, Q, S, T and X series) and their taxonomy file |
-| `cases/set*/rankedlineage.dmp` | Synthetic taxonomy lines in NCBI's `rankedlineage.dmp` layout, covering only the taxa the cases use |
-| `scripts/run_both.sh` | Runs one case through upstream and `ednaflow-lca` |
-| `scripts/run_all.sh` | Runs every case and writes the results table |
-| `scripts/summarise.py` | Builds `results/results.tsv` from the case outputs |
-| `scripts/make_cases.py`, `scripts/make_cases2.py` | The generators used to write most of the cases (for reference) |
-| `scripts/diff_compare.py` | Maps where the text and numeric identity-difference comparisons disagree |
-| `scripts/bench.py` | The hit-filtering benchmark in section N of the informed review |
-| `scripts/parity_checks.py`, `scripts/species_rule_check.py` | Checks run against the 76-row parity fixture |
-| `results/results.tsv` | Results from a full run on 8 November 2026 |
-| `results/console_output.txt` | The raw output of that run |
-| `evidence/` | Supporting records for the informed review (Galaxy Data Manager runs, the Data Manager probe fixture, benchmark and validation output) |
+| `build_comparison_harness.py` | Reconstructs the review harness, including named comparison cases, scripts and historical review evidence. |
+| `harness_README.md` | This audit and usage note. |
 
-Each case folder holds `blast.tsv` (eDNAFlow's 22-column BLAST layout), `features.tsv` (a small abundance table) and, where the thresholds differ from the defaults of 100, 97 and 1, a `params` file with three numbers: query coverage, percent identity and identity difference.
+Generated harness directories such as `cases/`, `scripts/`, `results/` and
+`evidence/` are intentionally not committed under `review-tools/`. They are
+review scaffolding and can contain dated or diagnostic output. Generate them in
+a disposable working directory when historical review reproduction is needed.
 
-The case folders themselves are the inputs. Case M, P11 and the three `_with_other_feature` cases were written by hand, so the generators do not recreate them.
+## Maintained regression evidence
 
-## Requirements
+Findings accepted during remediation were converted into focused tests under
+`tests/` where practical. The maintained suite now includes, among other cases:
 
-- Linux or macOS, with `bash` and Python 3.9 or later. No other packages are needed.
-- A checkout of the `ednaflow-lca` repository. The runner needs two things from it:
-  - its `src` folder;
-  - the vendored upstream scripts `upstream_runAssign_collapsedTaxonomy.py` and `upstream_working_function.py` (at the repository root).
+- exclusion and literal-TSV parsing behaviour;
+- exact eDNAFlow 22-column BLAST validation;
+- feature-interleaving invariance;
+- numeric identity-difference semantics;
+- conservative cross-domain LCA behaviour;
+- rank-aware NCBI taxonomy and `nodes.dmp` consistency;
+- blank-domain semantics;
+- per-hit terminal taxon provenance;
+- legacy-compatible and genuine rank-aware full parity fixtures;
+- Galaxy managed-reference and Data Manager tests.
 
-  The runner also accepts upstream's own file names, from a clone of `mahsa-mousavi/eDNAFlow` (folder `LCA_taxonomyAssignment_scripts`).
+The independent differential review workflow is maintained under
+`.github/workflows/independent-review.yml` and is configured as a release gate
+for pull requests to, and pushes on, `main`.
 
-## Running it
+## Reproducing the historical harness
 
-Work on a copy, because the runner writes output folders into every case folder:
+Do not run the builder in `review-tools/` if the goal is to keep the checkout
+minimal. Copy `build_comparison_harness.py` to a throwaway directory and execute
+it there, then inspect the generated README/instructions and cases.
 
-```
-cp -r ednaflow-lca-comparison-harness /tmp/harness
-bash /tmp/harness/scripts/run_all.sh /path/to/ednaflow-lca /path/to/ednaflow-lca/src
-```
+The historical harness used the vendored upstream files at repository root:
 
-The first argument is the folder that holds the upstream scripts (here the repository root), and the second is the `src` folder. To run a single case:
+- `upstream_runAssign_collapsedTaxonomy.py`
+- `upstream_working_function.py`
 
-```
-bash /tmp/harness/scripts/run_both.sh /tmp/harness/cases/set1/A_exclusion_via_taxonomy_name /path/to/ednaflow-lca /path/to/ednaflow-lca/src
-```
+Their provenance is documented in `NOTICE`. The upstream scripts are GPL-3.0
+and remain subject to their upstream licence and attribution.
 
-Each case folder then gains two output folders:
+The upstream LCA script performs shell-based taxonomy download and file
+operations. Historical differential execution therefore used network-blocking
+stubs, timeouts and disposable directories so those operations could not modify
+the release checkout or fetch changing taxonomy during deterministic tests.
 
-- `up/` from upstream: `out.tsv`, `run.log` and upstream's intermediate files;
-- `sa/` from `ednaflow-lca`: `a.tsv` (assignments), `h.tsv` (filtered hits), `s.tsv` (summary) and `run.log`.
+## Interpreting historical review results
 
-A full run takes a few seconds.
+Historical generated result tables represent the implementation state at the
+time of review. They are not release specifications and should not be copied
+back into this directory as current expected output.
 
-## Reading the results table
+For current behaviour use, in order of authority:
 
-`results/results.tsv` has one row per case and feature. For each side it gives:
+1. focused tests under `tests/`;
+2. `PARITY_REPORT.md` for compatibility scope and intentional divergences;
+3. `CHANGELOG.md` for release changes;
+4. current CI workflows and Galaxy tests.
 
-- the lowest rank that is neither empty nor `dropped` (for example `species Antechinus flavipes`), and any blank ranks;
-- the exit status.
-
-A feature missing from a side's output shows as `absent`. Two rows for one feature show as `[2 rows]`. The `agree` column is `yes` only when both seven-rank lineages and both exit statuses match. Where upstream crashes and `ednaflow-lca` stops with a clear message, `agree` is `NO` even though both fail. Read those cases with the error column.
-
-The run included here matches the findings in the informed review. In particular, A, B, C, X01, X02, X03, I and M show the exclusion and quoting divergences (D1 and D2), and P03 shows the inherited column shift.
-
-## How upstream is run safely
-
-Upstream's script downloads NCBI's taxonomy with `wget` and `unzip`, then runs `mkdir`, `mv`, `tr` and `rm` in its working directory. For each case, `run_both.sh`:
-
-1. copies both upstream scripts into a fresh `up/` folder inside the case;
-2. puts stub `wget` and `unzip` commands that simply fail first on `PATH`, so nothing is downloaded;
-3. clears proxy variables for that command;
-4. copies the case set's `rankedlineage.dmp` into `up/`, which upstream's own `tr` step then converts.
-
-All of upstream's file operations stay inside `up/`. You will see "mv: cannot stat" messages in `up/run.log`; they come from the stubbed download and are expected. For a CI job, also run this step without network access, with a timeout, and in a throwaway directory.
-
-`ednaflow-lca` is run with `python3 -I` and the `src` folder added to `sys.path`, so nothing is imported from the case folder.
-
-## Turning this into tests and CI
-
-1. **Unit tests.** For each fix, copy the relevant case into `tests/`, and assert the result the informed review recommends (section P lists the expected outputs). Write the test first, and confirm it fails before the fix.
-2. **Differential CI job.**
-   - Run `run_all.sh`, or an equivalent pytest fixture, on every push.
-   - Keep an allow-list of intentional divergences: case, reason, and policy (for example, P06 because the byte-order mark handling is a deliberate improvement).
-   - Fail the job on any difference not on the list.
-   - Treat upstream crashes (P04, P07, T01, T02 and X03 without a second feature) as expected failures.
-3. **Golden files.** Commit upstream's outputs for each case too, so the tests can still run where executing upstream is not possible. The live run then proves the golden files are genuine.
-
-## Limits
-
-- **The taxonomy lines are synthetic.** They follow NCBI's layout, but they are not copied from a real dump. Cases about viruses, synthetic constructs and NCBI's newer ranks (H, K and L) should be re-checked against lines from a current snapshot (informed review, item V1).
-- **Hand-built test data.** The cases test behaviour, not realistic data volumes. For speed, use `scripts/bench.py`.
-- **Dated results.** `results/results.tsv` reflects the archive reviewed on 8 November 2026. Expect it to change as fixes land; that is the point.
-- **`evidence/probe_dm_fixture/`.** This is a diagnostic Data Manager written to demonstrate a Galaxy behaviour (informed review, section D). It is not a proposed implementation.
+Synthetic taxonomy cases from the historical harness are useful for isolating
+logic, but unusual ranks, viruses, synthetic constructs and current NCBI rank
+semantics should be validated against real dated NCBI taxonomy when the decision
+depends on those details. The release parity suite now includes a genuine
+matching `rankedlineage.dmp`/`nodes.dmp` subset from the 5 November 2026 snapshot
+for rank-aware reference testing.
 
 ## Licence
 
-The scripts and cases in this folder were written for the review and contain no code from `ednaflow-lca` or eDNAFlow. The upstream scripts they run are GPL-3.0 and are not included here.
+The review harness builder and generated review cases were created for this
+review process. Upstream eDNAFlow scripts used for comparison are separately
+attributed in `NOTICE` and remain GPL-3.0. No generated review output changes
+the licence or authorship of either eDNAFlow or `ednaflow-lca`.

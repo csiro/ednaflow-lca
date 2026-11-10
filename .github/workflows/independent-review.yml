@@ -4,7 +4,14 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - review-remediation
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: independent-review-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   differential-review:

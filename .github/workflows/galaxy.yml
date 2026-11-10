@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: galaxy-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   planemo-lint:
     runs-on: ubuntu-latest
@@ -60,11 +64,27 @@ jobs:
           test -f /tmp/ednaflow-dm/result_files/rankedlineage.dmp
           test -f /tmp/ednaflow-dm/result_files/nodes.dmp
           python -m json.tool /tmp/ednaflow-dm/result.json
+      - name: Build isolated Data Manager Tool Data Table
+        run: |
+          mkdir -p /tmp/ednaflow-dm-galaxy/tool-data
+          : > /tmp/ednaflow-dm-galaxy/tool-data/ednaflow_lca_taxonomy.loc
+          cat > /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml <<'EOF'
+          <tables>
+            <table name="ednaflow_lca_taxonomy" comment_char="#" allow_duplicate_entries="False">
+              <columns>value, name, date, rankedlineage_sha256, nodes_sha256, path, nodes_path</columns>
+              <file path="/tmp/ednaflow-dm-galaxy/tool-data/ednaflow_lca_taxonomy.loc" />
+            </table>
+          </tables>
+          EOF
+          cat /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml
+
       - name: Execute NCBI taxonomy Data Manager test
         run: |
           set -o pipefail
           planemo test galaxy/data_manager/data_manager_ncbi_rankedlineage.xml \
             --no_dependency_resolution \
+            --tool_data_table /tmp/ednaflow-dm-galaxy/tool_data_table_conf.xml \
+            --tool_data_path /tmp/ednaflow-dm-galaxy/tool-data \
             --no_cleanup \
             --test_output_json data_manager_test_output.json \
             2>&1 | tee data_manager_planemo.log
@@ -263,3 +283,31 @@ jobs:
               raise SystemExit('FAIL: managed wrapper test did not succeed')
           print('Managed taxonomy wrapper execution verified successfully.')
           PY
+
+  plain-wrapper-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package and Planemo
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install planemo
+      - name: Execute plain wrapper test
+        run: |
+          planemo test galaxy/ednaflow_lca.xml \
+            --no_dependency_resolution \
+            --test_output_json plain_wrapper_test_output.json
+      - name: Show plain wrapper test report
+        if: always()
+        run: |
+          if [ -f plain_wrapper_test_output.json ]; then
+            cat plain_wrapper_test_output.json
+          else
+            echo "No plain wrapper Planemo JSON test report was produced"
+          fi

@@ -12,28 +12,41 @@ automated, reproducible and scalable workflow for analysis of environmental
 DNA sequences exploiting Nextflow and Singularity. Molecular Ecology
 Resources 21:1697-1704. DOI: 10.1111/1755-0998.13356.
 
-The upstream runAssign_collapsedTaxonomy.py file identifies Mahsa
-Mousavi-Derazmahalleh as its author. The public upstream history records commit
-0c88d6f ("filter general uncultured stuff") for that LCA script. This notice
-does not assert that 0c88d6f is the provenance commit for every upstream file
-retained here.
+Upstream provenance retained for audit:
+- upstream_runAssign_collapsedTaxonomy.py corresponds to upstream eDNAFlow
+  history at commit 0c88d6f ("filter general uncultured stuff").
+- upstream_working_function.py corresponds to upstream eDNAFlow history at
+  commit ec94ab1.
 
-Upstream files retained at repository root for provenance:
-- upstream_runAssign_collapsedTaxonomy.py
-- upstream_working_function.py
+The retained files may differ byte-for-byte from GitHub's historical blobs due
+to line-ending normalisation; the provenance statement concerns source content
+and upstream history rather than byte identity.
+
+Modified for standalone packaging and Galaxy use by Olly Berry, CSIRO.
+Release-remediation and modification record updated: 2026-11-09.
 
 CSIRO modifications for this standalone adaptation include, at a high level:
 - removal of runtime shell-based taxonomy download and fixed intermediate files;
 - a packaged command-line interface with explicit inputs and outputs;
 - literal 22-column eDNAFlow BLAST parsing and input validation;
+- stable per-feature hit evaluation so interleaved features cannot change
+  another feature's adjacent-hit filtering result;
 - independently reviewed compatibility tests and documented corrections to
   numeric identity-difference and cross-domain LCA behaviour;
-- rank-aware NCBI taxonomy using rankedlineage.dmp plus nodes.dmp;
+- rank-aware NCBI taxonomy using rankedlineage.dmp plus nodes.dmp, including
+  consistency checks when nodes.dmp is explicitly supplied;
+- preservation of blank domain semantics rather than relabelling kingdom as
+  domain;
 - per-hit taxon-name, taxon-rank and lineage provenance;
 - a Galaxy wrapper with managed and custom taxonomy routes;
 - a versioned Galaxy Data Manager with persistent reference registration,
   independent checksums, structural validation and a finite download timeout;
 - Python packaging, automated tests and a Bioconda recipe.
+
+The differential-review harness under review-tools/ was developed during an
+independent AI-assisted review and then used and extended during release
+remediation. Its named cases and executable checks are retained as audit and
+regression evidence; generated scratch outputs are not release specifications.
 
 The approved public repository for this derivative is:
 https://github.com/csiro/ednaflow-lca
